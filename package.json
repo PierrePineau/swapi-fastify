@@ -1,0 +1,13 @@
+{
+  "name": "APISwapi",
+  "version": "1.0.0",
+  "description": "API REST swapi with fastify",
+  "main": "index.js",
+  "repository": "https://github.com/PierrePineau/swapi-fastify.git",
+  "author": "PierrePineau <pierrepineau.pro@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "fastify": "^4.24.3"
+  }
+}

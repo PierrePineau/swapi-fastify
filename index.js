@@ -14,19 +14,18 @@ const films = require("./routes/films.js");
 const start = async () => {
   try {
     // Enregistre le plugin fastify-swagger
-    fastify.register(require("@fastify/swagger"), configSwagger);
+    await fastify.register(require("@fastify/swagger"), configSwagger);
 
     // Enregistre le plugin fastify-swagger-ui
-    fastify.register(require("@fastify/swagger-ui"), configSwaggerUI);
+    await fastify.register(require("@fastify/swagger-ui"), configSwaggerUI);
 
-    fastify.register(require("@fastify/autoload"), {
-        dir: path.join(__dirname, "/routes"),
-    });
-
-    console.log(fastify);
+    // fastify.register(require("@fastify/autoload"), {
+    //     dir: path.join(__dirname, "/routes/"),
+    // });
+    console.log(path.join(__dirname, "/routes"));
 
     // Les routes des films
-    // films.routes(fastify);
+    films.routes(fastify);
 
     fastify.put(
       "/some-route/:id",
@@ -197,7 +196,7 @@ const start = async () => {
         async () => {
           await fastify.listen({ port: 3000 });
           console.log(
-            `Serveur lancé sur http://localhost:${fastify.server.address().port}`
+            `Serveur lancé sur http://localhost:${fastify.server.address().port}/doc`
           );
         }
         // fastify.listen(, () =>

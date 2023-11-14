@@ -22,16 +22,22 @@ const configSwagger = {
             }
         },
         tags: [
-            {
+            Films = {
                 name: "Films",
                 description: "Films API",
             },
-            {
+            People = {
                 name: "People",
                 description: "People API",
             },
         ],
-        exposeRoute: true,
+        security: [
+            {
+                "JWT": []
+            }
+        ]
+        // exposeRoute: true,
+        // hideUntagged: false,
     }
 }
 

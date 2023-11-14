@@ -24,6 +24,16 @@ const configSwagger = {
                 }
             }
         },
+        tags: [
+            {
+                name: "films",
+                description: "Films API",
+            },
+            {
+                name: "people",
+                description: "People API",
+            },
+        ],
     }
 }
 

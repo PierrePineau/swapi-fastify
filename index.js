@@ -5,6 +5,7 @@ const prisma = new PrismaClient();
 
 const configSwagger = require("./plugins/swagger.js");
 const configSwaggerUI = require("./plugins/swagger-ui.js");
+const mongoose = require("mongoose");
 
 const start = async () => {
   try {
@@ -174,21 +175,29 @@ const start = async () => {
 
     const DATABASE_URL =
       "mongodb+srv://LeoTeix:1234@cluster0.rolrany.mongodb.net/?retryWrites=true&w=majority";
-    const PORT = process.env.PORT || 16743;
+    const PORT = 3001 || 16743;
 
     mongoose
       .connect(DATABASE_URL, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
+        // useNewUrlParser: true,
+        // useUnifiedTopology: true,
       })
-      .then(() =>
-        app.listen(PORT, () => console.log(`Server: http://localhost:${PORT}`))
+      .then(
+        async () => {
+          await fastify.listen({ port: 3000 });
+          console.log(
+            `Serveur lancé sur http://localhost:${
+              fastify.server.address().port
+            }`
+          );
+        }
+        // fastify.listen(, () =>
+        //   console.log(`Server: http://localhost:${PORT}}`)
+        // )
       )
       .catch((error) => console.log(`${error} did not connect`));
 
     // Lance le serveur Fastify
-    await fastify.listen({ port: 3000 });
-    console.log(`Serveur lancé sur ${fastify.server.address().port}`);
   } catch (err) {
     console.error(err);
     process.exit(1);

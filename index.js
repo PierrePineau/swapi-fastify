@@ -10,6 +10,7 @@ const mongoose = require("mongoose");
 const path = require("path");
 
 const films = require("./routes/films.js");
+const people = require("./routes/people.js");
 
 const start = async () => {
   try {
@@ -26,6 +27,9 @@ const start = async () => {
 
     // Les routes des films
     films.routes(fastify);
+
+    // Les routes des People
+    people.routes(fastify);
 
     fastify.put(
       "/some-route/:id",

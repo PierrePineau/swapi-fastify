@@ -1,4 +1,4 @@
-INSERT INTO `films` VALUES
+INSERT INTO `Films` VALUES
 ('[2,3,5,9,10,11,12,13]','2014-12-20T19:49:45.256Z','[4,6,7,8]','[1,2,3]','Gary Kurtz, Rick McCallum','A New Hope','2014-12-10T14:23:31.880Z',4,'George Lucas','1977-05-25','It is a period of civil war.
 Rebel spaceships, striking
 from a hidden base, have won

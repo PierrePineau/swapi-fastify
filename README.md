@@ -8,3 +8,6 @@
 <!-- Pierre : 192.168.72.1 -->
 
 <!-- Nathan : 192.168.6.1 -->
+
+
+<!-- https://github.com/fastify/fastify-swagger -->

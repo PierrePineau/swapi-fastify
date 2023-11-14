@@ -56,9 +56,17 @@ const routes = async (app) => {
 
 	app.post("/films", {
             schema: {
-                description: 'post some data',
+                description: 'Create a new film',
                 tags: tags,
                 summary: 'Create a new film',
+                body: {
+                    type: 'object',
+                    properties: {
+                        title: { type: 'string' },
+                        description: { type: 'string' },
+                        year: { type: 'number' }
+                    }
+                },
             }
         },async (request, reply) => {
             const {title, description, year} = request.body

@@ -1,118 +1,118 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
 model Starships {
-  id Int @id @default(autoincrement())
-  pilots Json?
-  MGLT String?
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  pilots       Vehicles[]
+  MGLT         String?
   starship_class String?
   hyperdrive_rating String?
-  filmsId Int
-  films Films @relation(fields: [filmsId], references: [id])
+  filmsId      String @db.ObjectId
+  films        Films   @relation(fields: [filmsId], references: [id])
 }
 
 model Films {
-  id Int @id @default(autoincrement())
-  starships Starships[]
-  edited DateTime?
-  vehicles Vehicles[]
-  planets Planets[]
-  producer String?
-  title String?
-  created  DateTime?
-  episode_id Int?
-  director String?
-  release_date DateTime?
-  opening_crawl String?
-  characters People[]
-  species Species[]
+  id              String    @id @default(auto()) @map("_id") @db.ObjectId
+  starships       Starships[]
+  edited          DateTime?
+  vehicles        Vehicles[]
+  planets         Planets[]
+  producer        String?
+  title           String?
+  created         DateTime?
+  episode_id      Int?
+  director        String?
+  release_date    DateTime?
+  opening_crawl   String?
+  characters      People[]
+  species         Species[]
 }
 
-model People{
-  id Int @id @default(autoincrement())
-  filmsId Int
-  films Films @relation(fields: [filmsId], references: [id])
-  spaciesId Int
-  spacies Species @relation(fields: [spaciesId], references: [id])
-  vehicles Vehicles[]
-  edited DateTime?
-  name String?
-  created DateTime
-  gender   String?
-  skin_color String?
-  hair_color String?
-  height  String?
-  eye_color String?
-  mass String?
-  homeworld Int?
-  birth_year String?
+model People {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  edited         DateTime?
+  name           String?
+  created        DateTime
+  gender         String?
+  skin_color     String?
+  hair_color     String?
+  height         String?
+  eye_color      String?
+  mass           String?
+  homeworld      Int?
+  birth_year     String?
+  vehiclesId String @db.ObjectId
+  vehicles Vehicles? @relation(fields: [vehiclesId], references: [id])
+  filmsId        String @db.ObjectId
+  films          Films?    @relation(fields: [filmsId], references: [id])
+  spaciesId      String @db.ObjectId
+  spacies        Species?  @relation(fields: [spaciesId], references: [id])
 }
 
-model Planets{
-  id Int @id @default(autoincrement())
-  filmsId Int
-  films Films @relation(fields: [filmsId], references: [id])
-  edited DateTime?
-  climate String?
-  surface_water String?
-  name String?
-  diameter String?
+model Planets {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  edited         DateTime?
+  climate        String?
+  surface_water  String?
+  name           String?
+  diameter       String?
   rotation_period String?
-  created DateTime?
-  terrain String?
-  gravity String?
+  created        DateTime?
+  terrain        String?
+  gravity        String?
   orbital_period String?
-  population String?
+  population     String?
+  filmsId        String @db.ObjectId
+  films          Films    @relation(fields: [filmsId], references: [id])
 }
 
 model Species {
-  id Int @id @default(autoincrement())
-  filmsId Int
-  films Films @relation(fields: [filmsId], references: [id])
-  edited String?
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  edited         DateTime?
   classification String?
-  name String?
-  designation String?
-  created DateTime?
-  eye_colors String?
-  people People[]
-  skin_colors String?
-  language String?
-  hair_colors String?
-  homeworld Int?
+  name           String?
+  designation    String?
+  created        DateTime?
+  eye_colors     String?
+  people         People[]
+  skin_colors    String?
+  language       String?
+  hair_colors    String?
+  homeworld      Int?
   average_lifespan String?
   average_height String?
+  filmsId        String @db.ObjectId
+  films          Films    @relation(fields: [filmsId], references: [id])
 }
 
-model Transport{
-  id Int @id @default(autoincrement())
-  edited DateTime?
-  consumables String?
-  name String?
-  created String?
-  cargo_capacity String?
-  passengers String?
+model Transport {
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  edited          DateTime?
+  consumables     String?
+  name            String?
+  created         DateTime?
+  cargo_capacity  String?
+  passengers      String?
   max_atmosphering_speed String?
-  crew String?
-  lenght String?
-  model String?
+  crew            String?
+  length          String?
+  model           String?
   cost_in_credits String?
-  manufacturer String?
+  manufacturer    String?
 }
 
 model Vehicles {
-  id Int @id @default(autoincrement())
-  vehicle_class String?
-  filmsId Int
-  films Films @relation(fields: [filmsId], references: [id])
-  pilots People[]
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  vehicle_class   String?
+  pilots          People[]
+  filmsId         String @db.ObjectId
+  films           Films    @relation(fields: [filmsId], references: [id])
+  starshipId String @db.ObjectId
+  starships Starships @relation(fields: [starshipId], references: [id])
 }

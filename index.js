@@ -7,6 +7,8 @@ const configSwagger = require("./plugins/swagger.js");
 const configSwaggerUI = require("./plugins/swagger-ui.js");
 const mongoose = require("mongoose");
 
+const films = require("./routes/films.js");
+
 const start = async () => {
   try {
     // Enregistre le plugin fastify-swagger
@@ -15,7 +17,9 @@ const start = async () => {
     // Enregistre le plugin fastify-swagger-ui
     await fastify.register(require("@fastify/swagger-ui"), configSwaggerUI);
 
-    // Définis une route avec une fonction de gestion
+    // Les routes des films
+    films.routes(fastify);
+
     fastify.put(
       "/some-route/:id",
       {
@@ -173,9 +177,8 @@ const start = async () => {
     // Attend que Fastify soit prêt
     await fastify.ready();
 
-    const DATABASE_URL =
-      "mongodb+srv://LeoTeix:1234@cluster0.rolrany.mongodb.net/?retryWrites=true&w=majority";
-    const PORT = 3001 || 16743;
+    const DATABASE_URL = "mongodb+srv://LeoTeix:1234@cluster0.rolrany.mongodb.net/?retryWrites=true&w=majority";
+    // const PORT = 3001 || 16743;
 
     mongoose
       .connect(DATABASE_URL, {

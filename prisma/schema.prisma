@@ -1,0 +1,118 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Starships {
+  id Int @id @default(autoincrement())
+  pilots Json?
+  MGLT String?
+  starship_class String?
+  hyperdrive_rating String?
+  filmsId Int
+  films Films @relation(fields: [filmsId], references: [id])
+}
+
+model Films {
+  id Int @id @default(autoincrement())
+  starships Starships[]
+  edited DateTime?
+  vehicles Vehicles[]
+  planets Planets[]
+  producer String?
+  title String?
+  created  DateTime?
+  episode_id Int?
+  director String?
+  release_date DateTime?
+  opening_crawl String?
+  characters People[]
+  species Species[]
+}
+
+model People{
+  id Int @id @default(autoincrement())
+  filmsId Int
+  films Films @relation(fields: [filmsId], references: [id])
+  spaciesId Int
+  spacies Species @relation(fields: [spaciesId], references: [id])
+  vehicles Vehicles[]
+  edited DateTime?
+  name String?
+  created DateTime
+  gender   String?
+  skin_color String?
+  hair_color String?
+  height  String?
+  eye_color String?
+  mass String?
+  homeworld Int?
+  birth_year String?
+}
+
+model Planets{
+  id Int @id @default(autoincrement())
+  filmsId Int
+  films Films @relation(fields: [filmsId], references: [id])
+  edited DateTime?
+  climate String?
+  surface_water String?
+  name String?
+  diameter String?
+  rotation_period String?
+  created DateTime?
+  terrain String?
+  gravity String?
+  orbital_period String?
+  population String?
+}
+
+model Species {
+  id Int @id @default(autoincrement())
+  filmsId Int
+  films Films @relation(fields: [filmsId], references: [id])
+  edited String?
+  classification String?
+  name String?
+  designation String?
+  created DateTime?
+  eye_colors String?
+  people People[]
+  skin_colors String?
+  language String?
+  hair_colors String?
+  homeworld Int?
+  average_lifespan String?
+  average_height String?
+}
+
+model Transport{
+  id Int @id @default(autoincrement())
+  edited DateTime?
+  consumables String?
+  name String?
+  created String?
+  cargo_capacity String?
+  passengers String?
+  max_atmosphering_speed String?
+  crew String?
+  lenght String?
+  model String?
+  cost_in_credits String?
+  manufacturer String?
+}
+
+model Vehicles {
+  id Int @id @default(autoincrement())
+  vehicle_class String?
+  filmsId Int
+  films Films @relation(fields: [filmsId], references: [id])
+  pilots People[]
+}

@@ -54,24 +54,24 @@ const routes = async (app) => {
     //   }
     // }, (req, reply) => {})
 
-	// app.post("/films", {
-    //         schema: {
-    //             description: 'post some data',
-    //             tags: tags,
-    //             summary: 'Create a new film',
-    //         }
-    //     },async (request, reply) => {
-    //         const {title, description, year} = request.body
+	app.post("/films", {
+            schema: {
+                description: 'post some data',
+                tags: tags,
+                summary: 'Create a new film',
+            }
+        },async (request, reply) => {
+            const {title, description, year} = request.body
 
-    //         const film = await prisma.film.create({
-    //             data: {
-    //                 title,
-    //                 description,
-    //                 year,
-    //             },
-    //         })
-	// 	reply.send(film)
-	// })
+            const film = await prisma.film.create({
+                data: {
+                    title,
+                    description,
+                    year,
+                },
+            })
+		reply.send(film)
+	})
 
 	/**
 	 * GET ALL FILMS

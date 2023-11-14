@@ -7,18 +7,26 @@ const configSwagger = require("./plugins/swagger.js");
 const configSwaggerUI = require("./plugins/swagger-ui.js");
 const mongoose = require("mongoose");
 
+const path = require("path");
+
 const films = require("./routes/films.js");
 
 const start = async () => {
   try {
     // Enregistre le plugin fastify-swagger
-    await fastify.register(require("@fastify/swagger"), configSwagger);
+    fastify.register(require("@fastify/swagger"), configSwagger);
 
     // Enregistre le plugin fastify-swagger-ui
-    await fastify.register(require("@fastify/swagger-ui"), configSwaggerUI);
+    fastify.register(require("@fastify/swagger-ui"), configSwaggerUI);
+
+    fastify.register(require("@fastify/autoload"), {
+        dir: path.join(__dirname, "/routes"),
+    });
+
+    console.log(fastify);
 
     // Les routes des films
-    films.routes(fastify);
+    // films.routes(fastify);
 
     fastify.put(
       "/some-route/:id",
@@ -32,26 +40,26 @@ const start = async () => {
       }
     );
 
-    fastify.post(`/signup`, async (req, res) => {
-      const { name, email, posts } = req.body;
+    // fastify.post(`/signup`, async (req, res) => {
+    //   const { name, email, posts } = req.body;
 
-      const postData = posts
-        ? posts.map((post) => {
-            return { title: post.title, content: post.content || undefined };
-          })
-        : [];
+    //   const postData = posts
+    //     ? posts.map((post) => {
+    //         return { title: post.title, content: post.content || undefined };
+    //       })
+    //     : [];
 
-      const result = await prisma.user.create({
-        data: {
-          name,
-          email,
-          posts: {
-            create: postData,
-          },
-        },
-      });
-      return result;
-    });
+    //   const result = await prisma.user.create({
+    //     data: {
+    //       name,
+    //       email,
+    //       posts: {
+    //         create: postData,
+    //       },
+    //     },
+    //   });
+    //   return result;
+    // });
 
     fastify.post(`/post`, async (req, res) => {
       const { title, content, authorEmail } = req.body;
@@ -65,24 +73,24 @@ const start = async () => {
       return result;
     });
 
-    fastify.put("/post/:id/views", async (req, res) => {
-      const { id } = req.params;
+    // fastify.put("/post/:id/views", async (req, res) => {
+    //   const { id } = req.params;
 
-      try {
-        const post = await prisma.post.update({
-          where: { id: Number(id) },
-          data: {
-            viewCount: {
-              increment: 1,
-            },
-          },
-        });
+    //   try {
+    //     const post = await prisma.post.update({
+    //       where: { id: Number(id) },
+    //       data: {
+    //         viewCount: {
+    //           increment: 1,
+    //         },
+    //       },
+    //     });
 
-        return post;
-      } catch (error) {
-        return { error: `Post with ID ${id} does not exist in the database` };
-      }
-    });
+    //     return post;
+    //   } catch (error) {
+    //     return { error: `Post with ID ${id} does not exist in the database` };
+    //   }
+    // });
 
     fastify.put("/publish/:id", async (req, res) => {
       const { id } = req.params;
@@ -175,13 +183,13 @@ const start = async () => {
     });
 
     // Attend que Fastify soit prêt
-    await fastify.ready();
-
-    const DATABASE_URL = "mongodb+srv://LeoTeix:1234@cluster0.rolrany.mongodb.net/?retryWrites=true&w=majority";
+    await fastify.ready()
+    // fastify.swagger()
+    // On récupère dans le .env les informations de connexion à la base de données
+    const DATABASE_URL = process.env.DATABASE_URL;
     // const PORT = 3001 || 16743;
 
-    mongoose
-      .connect(DATABASE_URL, {
+    mongoose.connect(DATABASE_URL, {
         // useNewUrlParser: true,
         // useUnifiedTopology: true,
       })
@@ -189,9 +197,7 @@ const start = async () => {
         async () => {
           await fastify.listen({ port: 3000 });
           console.log(
-            `Serveur lancé sur http://localhost:${
-              fastify.server.address().port
-            }`
+            `Serveur lancé sur http://localhost:${fastify.server.address().port}`
           );
         }
         // fastify.listen(, () =>

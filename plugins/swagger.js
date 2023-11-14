@@ -1,8 +1,5 @@
 const configSwagger = {
     openapi: {
-        // swagger: "3.0",
-        // openapi: '3.0.0',
-        routePrefix: "/doc",
         info: {
             title: "APISwapi",
             description: "API REST swapi with fastify",
@@ -26,14 +23,15 @@ const configSwagger = {
         },
         tags: [
             {
-                name: "films",
+                name: "Films",
                 description: "Films API",
             },
             {
-                name: "people",
+                name: "People",
                 description: "People API",
             },
         ],
+        exposeRoute: true,
     }
 }
 

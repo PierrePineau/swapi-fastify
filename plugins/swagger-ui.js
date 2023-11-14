@@ -1,4 +1,15 @@
+// console.log(absolutePath);
+// const path = require('path')
+// const absolutePath = path.resolve(__dirname, '../routes')
 const configSwaggerUI = {
+    // mode : 'static',
+    // specification: {
+    //     path: "./openapi.json",
+    //     postProcessor: function (swaggerObject) {
+    //         return swaggerObject
+    //     },
+    //     baseDir: absolutePath,
+    // },
 	routePrefix: "/doc",
     uiConfig: {
         docExpansion: "full",
@@ -18,6 +29,7 @@ const configSwaggerUI = {
         return swaggerObject
     },
     transformSpecificationClone: true,
+    // include: ['routes/*.js']
 }
 
 module.exports = configSwaggerUI

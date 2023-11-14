@@ -1,0 +1,19 @@
+{
+    "/description": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "response and schema description",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "response and schema description",
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }

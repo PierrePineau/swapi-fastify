@@ -39,7 +39,39 @@ const configSwagger = {
                     },
                     // required: ["id", "title", "description", "year"]
                 }
-            }
+            },
+            parameters: {
+                page: {
+                    name: "page",
+                    in: "query",
+                    description: "Page of item",
+                    required: false,
+                    schema: {
+                        type: "integer",
+                        minimum: 1,
+                    },
+                },
+                limit: {
+                    name: "limit",
+                    in: "query",
+                    description: "Limit of item",
+                    required: false,
+                    schema: {
+                        type: "integer",
+                        minimum: 1,
+                    },
+                },
+                order: {
+                    name: "order",
+                    in: "query",
+                    description: "Order of item",
+                    required: false,
+                    schema: {
+                        type: "string",
+                        enum: ["ASC", "DESC"],
+                    },
+                },
+            },
         },
         tags: [
             Films = {
@@ -50,12 +82,28 @@ const configSwagger = {
                 name: "People",
                 description: "People API",
             },
+            Planets = {
+                name: "Planets",
+                description: "Planets API",
+            },
+            Species = {
+                name: "Species",
+                description: "Species API",
+            },
+            StarShips = {
+                name: "StarShips",
+                description: "StarShips API",
+            },
+            Vehicles = {
+                name: "Vehicles",
+                description: "Vehicles API",
+            },
         ],
         security: [
             {
                 "JWT": []
             }
-        ]
+        ],
         // exposeRoute: true,
         // hideUntagged: false,
     }

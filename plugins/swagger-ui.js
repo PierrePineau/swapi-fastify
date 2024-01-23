@@ -4,7 +4,7 @@
 const configSwaggerUI = {
 	routePrefix: "/doc",
     uiConfig: {
-        docExpansion: "full",
+        docExpansion: "list",
         deepLinking: false,
     },
     uiHooks: {

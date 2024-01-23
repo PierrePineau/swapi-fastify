@@ -1,5 +1,3 @@
-const {PrismaClient} = require("@prisma/client")
-const prisma = new PrismaClient()
 const routes = async (app) => {
 	const tags = ["Films"]
 	/**
@@ -55,6 +53,7 @@ const routes = async (app) => {
 					},
 				},
 			},
+            // onRequest: [app.authenticate]
 		},
 		async (request, reply) => {
 			// const {page, limit, order} = request.params
@@ -62,26 +61,31 @@ const routes = async (app) => {
             const limit = request.params.limit || 10;
             const order = request.params.order == "ASC" ? "asc" : "desc";
 
-            // const films = await prisma.films.findMany({
-            //     skip: (page - 1) * limit,
-            //     take: limit,
-            //     orderBy : {
-            //         edited: order
-            //     }
-            // })
+            // const repoFilms = app.mongo.db.collection('Films');
 
             const films = await prisma.films.findMany({
-                select: {
-                    producer: true,
+                skip: (page - 1) * limit,
+                take: limit,
+                orderBy : {
+                    edited: order
                 },
-            });
+                select : {
+                    producer: true,
+                }
+            })
 
-            console.log(films);
+            // const films = await repoFilms.find().limit(10)
+                       
+
+            films.forEach(film => {
+                console.log(film);
+            });
+            // console.log(films);
 
 			return reply.send({
                 count: films.length,
-                page,
-                limit,
+                page : page,
+                limit : limit,
                 data: films
             })
 		}

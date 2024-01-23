@@ -1,10 +1,10 @@
-generator client {
-  provider = "prisma-client-js"
-}
-
 datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
 }
 
 model Starships {
@@ -23,8 +23,8 @@ model Films {
   edited          DateTime?
   vehicles        Vehicles[]
   planets         Planets[]
-  producer        String?
-  title           String?
+  producer        String @db.String
+  title           String @db.String
   created         DateTime?
   episode_id      Int?
   director        String?
@@ -115,4 +115,10 @@ model Vehicles {
   films           Films    @relation(fields: [filmsId], references: [id])
   starshipId String @db.ObjectId
   starships Starships @relation(fields: [starshipId], references: [id])
+}
+
+model Users {
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  email           String?   @unique
+  password        String?
 }

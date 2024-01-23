@@ -1,7 +1,4 @@
 const fastify = require("fastify")();
-const { PrismaClient } = require("@prisma/client");
-
-const prisma = new PrismaClient();
 
 const configSwagger = require("./plugins/swagger.js");
 const configSwaggerUI = require("./plugins/swagger-ui.js");

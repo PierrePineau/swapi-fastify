@@ -21,24 +21,6 @@ const configSwagger = {
                 }
             },
             schemas: {
-                film:{
-                    type : "object",
-                    properties: {
-                        id: { type: "integer" },
-                        title: { type: "string" },
-                    },
-                    required: ["id", "title"]
-                },
-                List:{
-                    type: "object",
-                    properties: {
-                        id: { type: "integer" },
-                        title: { type: "string" },
-                        description: { type: "string" },
-                        year: { type: "number" },
-                    },
-                    // required: ["id", "title", "description", "year"]
-                }
             },
             parameters: {
                 page: {
@@ -74,6 +56,11 @@ const configSwagger = {
             },
         },
         tags: [
+            Auth = {
+                name: "Auth",
+                description: "Auth API",
+                order: 1,
+            },
             Films = {
                 name: "Films",
                 description: "Films API",

@@ -1,131 +1,156 @@
-// const {PrismaClient} = require("@prisma/client")
-// const prisma = new PrismaClient()
+const {PrismaClient} = require("@prisma/client")
+const prisma = new PrismaClient()
 const routes = async (app) => {
-    const tags = ["Films"];
+	const tags = ["Films"]
 	/**
-	 * CREATE ONE FILMS
+	 * GET FILMS
 	 */
-    // schema: {
-    //     description: 'post some data',
-    //     tags: ['user', 'code'],
-    //     summary: 'qwerty',
-    //     params: {
-    //       type: 'object',
-    //       properties: {
-    //         id: {
-    //           type: 'string',
-    //           description: 'user id'
-    //         }
-    //       }
-    //     },
-    //     body: {
-    //       type: 'object',
-    //       properties: {
-    //         hello: { type: 'string' },
-    //         obj: {
-    //           type: 'object',
-    //           properties: {
-    //             some: { type: 'string' }
-    //           }
-    //         }
-    //       }
-    //     },
-    //     response: {
-    //       201: {
-    //         description: 'Successful response',
-    //         type: 'object',
-    //         properties: {
-    //           hello: { type: 'string' }
-    //         }
-    //       },
-    //       default: {
-    //         description: 'Default response',
-    //         type: 'object',
-    //         properties: {
-    //           foo: { type: 'string' }
-    //         }
-    //       }
-    //     },
-    //     security: [
-    //       {
-    //         "apiKey": []
-    //       }
-    //     ]
-    //   }
-    // }, (req, reply) => {})
-
-	app.post("/films", {
-            schema: {
-                description: 'Create a new film',
-                tags: tags,
-                summary: 'Create a new film',
-                body: {
-                    type: 'object',
+	app.get(
+		"/films",
+		{
+			schema: {
+				description: "Get Films",
+				tags: tags,
+				summary: "Get all films",
+				params: {
+                    type: "object",
                     properties: {
-                        title: { type: 'string' },
-                        description: { type: 'string' },
-                        year: { type: 'number' }
-                    }
-                },
-            }
-        },async (request, reply) => {
-            const {title, description, year} = request.body
+                        page: {
+                            type: "number",
+                            default: 1,
+                        },
+                        limit: {
+                            type: "number",
+                            default: 10,
+                        },
+                        order: {
+                            type: "string",
+                            default: "DESC",
+                            enum: ["ASC", "DESC"],
+                        },
+                    },
+					// $ref: "#/components/parameters/List",
+					// required: ['id']
+				},
+				response: {
+					200: {
+						description: "Successful response",
+                        type: "object",
+                        properties: {
+                            count: { 
+                                type: "number" 
+                            },
+                            page: { 
+                                type: "number" 
+                            },
+                            limit: {
+                                type: "number" 
+                            },
+                            data: { 
+                                type: "array",
+                                // example:
+                            }
+                        },
+                        // $ref: "#/components/responses/List",
+					},
+				},
+			},
+		},
+		async (request, reply) => {
+			// const {page, limit, order} = request.params
+            const page =  request.params.page || 1;
+            const limit = request.params.limit || 10;
+            const order = request.params.order == "ASC" ? "asc" : "desc";
 
-            const film = await prisma.film.create({
-                data: {
-                    title,
-                    description,
-                    year,
+            // const films = await prisma.films.findMany({
+            //     skip: (page - 1) * limit,
+            //     take: limit,
+            //     orderBy : {
+            //         edited: order
+            //     }
+            // })
+
+            const films = await prisma.films.findMany({
+                select: {
+                    producer: true,
+                },
+            });
+
+            console.log(films);
+
+			return reply.send({
+                count: films.length,
+                page,
+                limit,
+                data: films
+            })
+		}
+	)
+
+	/**
+	 * CREATE ONE FILM
+	 */
+	app.post(
+		"/films",
+		{
+			schema: {
+				description: "Create a new film",
+				tags: tags,
+				summary: "Create a new film",
+				body: {
+					type: "object",
+					properties: {
+						title: {type: "string"},
+						producer: {type: "string"}
+					},
+				},
+			},
+		},
+		async (request, reply) => {
+			const {title, producer, year } = request.body
+
+			const film = await prisma.films.create({
+				data: {
+					title,
+					producer,
+					year,
+				},
+			})
+			reply.send(film)
+		}
+	)
+
+    /**
+	 * GET ONE FILM BY ID
+	 */
+	app.get(
+		"/films/:id",
+		{
+			schema: {
+				description: "Get one film by id",
+				tags: tags,
+				summary: "Get one film by id",
+				response: {
+					200: {
+                        // $ref: "#/components/responses/List",
+					},
+				},
+			},
+		},
+		async (request, reply) => {
+			const id = request.params.id
+
+            const film = await prisma.people.findUnique({
+                where: {
+                    id: Number(id),
                 },
             })
-		reply.send(film)
-	})
-
-//     app.post("/films", {
-//         schema: {
-//             description: 'post some data',
-//             tags: tags,
-//             summary: 'Create a new film',
-//         }
-//     },async (request, reply) => {
-//         const {title, description, year} = request.body
-
-//         const film = await prisma.film.create({
-//             data: {
-//                 title,
-//                 description,
-//                 year,
-//             },
-//         })
-//     reply.send(film)
-// })
+			reply.send(film)
+		}
+	)
 
 	/**
-	 * GET ALL FILMS
-	 */
-	app.get("/films", async (request, reply) => {
-		// const films = await prisma.film.findMany()
-
-		// reply.send(films)
-	})
-
-	/**
-	 * GET ONE FILMS BY ID
-	 */
-	// app.get("/films/:id", async (request, reply) => {
-	// 	const {id} = request.params
-
-	// 	const films = await prisma.people.findUnique({
-	// 		where: {
-	// 			id: Number(id),
-	// 		},
-	// 	})
-
-	// 	reply.send(films)
-	// })
-
-	/**
-	 * UPDATE ONE FILMS
+	 * UPDATE ONE FILM
 	 */
 	// app.put("/films/:id", async (request, reply) => {
 	// 	const {id} = request.params
@@ -160,7 +185,6 @@ const routes = async (app) => {
 	// })
 }
 
-
 module.exports = {
-    routes : routes
+	routes: routes,
 }

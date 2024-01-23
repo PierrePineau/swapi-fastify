@@ -22,7 +22,7 @@ const start = async () => {
     // fastify.register(require("@fastify/autoload"), {
     //     dir: path.join(__dirname, "/routes/"),
     // });
-    console.log(path.join(__dirname, "/routes"));
+    // console.log(path.join(__dirname, "/routes"));
 
     // Les routes des films
     films.routes(fastify);
@@ -186,6 +186,8 @@ const start = async () => {
     // fastify.swagger()
     // On récupère dans le .env les informations de connexion à la base de données
     const DATABASE_URL = process.env.DATABASE_URL;
+
+    console.log(DATABASE_URL);
     // const PORT = 3001 || 16743;
 
     mongoose.connect(DATABASE_URL, {

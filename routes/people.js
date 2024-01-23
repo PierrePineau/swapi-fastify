@@ -1,5 +1,64 @@
-// const fastify = require("fastify");
-// const { PrismaClient } = require("@prisma/client");
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient();
+
+const routes = async (app) => {
+    const tags = ["People"];
+
+    // Add a new People
+    app.post("/people", {
+        schema: {
+            description: 'Create a new people',
+            tags: tags,
+            summary: 'Create a new people',
+            body: {
+                type: 'object',
+                properties: {
+                    name: { type: 'string' },
+                    gender: { type: 'string' },
+                }
+            },
+        }
+    }, async (request, reply) => {
+        const {name, gender} = request.body
+
+        const people = await prisma.people.create({
+            data: {
+                name,
+                gender,
+            },
+        })
+        reply.send(people)
+    })
+
+
+    //View All People
+    app.get("/people", {
+        schema: {
+            description: 'View all people',
+            tags: tags,
+            summary: 'View all people',
+            response: {
+                200: {
+                    description: 'Successful response',
+                    type: 'array',
+                    items: {
+                        type: 'object',
+                        properties: {
+                            name: { type: 'string' },
+                            gender: { type: 'string' },
+                        }
+                    }
+                }
+            }   
+        }
+    }, async (request, reply) => {
+        const people = await prisma.people.findMany();
+        reply.send(people);
+    })
+}
+
+    
+
 
 // const prisma = new PrismaClient();
 // const app = fastify({ logger: true });
@@ -308,3 +367,8 @@
 //     reply.send(people);
 //   }
 // );
+
+
+module.exports = {
+    routes : routes
+}

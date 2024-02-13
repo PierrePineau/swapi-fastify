@@ -1,3 +1,5 @@
+const {Film} = require("../models/index.js")
+
 const routes = async (app) => {
 	const tags = ["Films"]
 	/**
@@ -62,20 +64,19 @@ const routes = async (app) => {
             const order = request.params.order == "ASC" ? "asc" : "desc";
 
             // const repoFilms = app.mongo.db.collection('Films');
+            const films = await Film.find().limit(10)
 
-            const films = await prisma.films.findMany({
-                skip: (page - 1) * limit,
-                take: limit,
-                orderBy : {
-                    edited: order
-                },
-                select : {
-                    producer: true,
-                }
-            })
+            // const films = await prisma.films.findMany({
+            //     skip: (page - 1) * limit,
+            //     take: limit,
+            //     orderBy : {
+            //         edited: order
+            //     },
+            //     select : {
+            //         producer: true,
+            //     }
+            // })
 
-            // const films = await repoFilms.find().limit(10)
-                       
 
             films.forEach(film => {
                 console.log(film);

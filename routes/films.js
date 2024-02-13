@@ -7,6 +7,7 @@ const routes = async (app) => {
 
     const EntityProperties = {};
     const EntityPropertiesCreate = {};
+    const EntityPropertiesUpdate = {};
     Object.entries(Collection.properties).forEach(([key, value]) => {
         if (value.type === 'array' && value.items && value.items.type === 'schemaobjectid') {
             value.items = {
@@ -20,6 +21,7 @@ const routes = async (app) => {
         EntityProperties[key] = value;
         if (key !== '_id') {
             EntityPropertiesCreate[key] = value;
+            EntityPropertiesUpdate[key] = value;
         }
     });
 
@@ -121,16 +123,17 @@ const routes = async (app) => {
             },
 		},
 		async (request, reply) => {
-			const {title, producer, year} = request.body
-
-			const film = await prisma.films.create({
-				data: {
-					title,
-					producer,
-					year,
-				},
-			})
-			reply.send(film)
+            try {
+                const body = request.body
+                const film = new Film(body)
+                await film.save()
+                return reply.send(film)
+            } catch (error) {
+                return reply.status(400).send({
+                    message: error.message
+                })
+            }
+			
 		}
 	)
 
@@ -160,6 +163,53 @@ const routes = async (app) => {
             }
 		},
 		async (request, reply) => {
+            try {
+                const id = request.params.id
+
+                const film = await Film.findOne(
+                    {
+                        _id: id
+                    }
+                )
+                return reply.send(film)
+            } catch (error) {
+                return reply.status(400).send({
+                    message: error.message
+                })
+            }
+		}
+	)
+
+	/**
+	 * UPDATE ONE FILM
+	 */
+	app.put(
+        "/films/:id",
+        {
+            schema: {
+                description: "Update one film",
+                tags: tags,
+                summary: "Update one film",
+                body: {
+                    type: "object",
+                    properties: EntityPropertiesUpdate,
+                },
+                response: {
+                    200: {
+                        response: 200,
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    type: "object",
+                                    properties: EntityProperties,
+                                },
+                            },
+                        },
+                    },
+                },
+            }
+		},
+        async (request, reply) => {
 			const id = request.params.id
 
 			const film = await Film.findOne(
@@ -167,44 +217,40 @@ const routes = async (app) => {
                     _id: id
                 }
             )
-			reply.send(film)
+
+            if (!film) {
+                return reply.status(404).send({
+                    message: "Not found"
+                })
+            }else{
+                Object.assign(film, request.body);
+                await film.save();
+                return reply.send(film);
+            }
 		}
 	)
 
 	/**
-	 * UPDATE ONE FILM
-	 */
-	// app.put("/films/:id", async (request, reply) => {
-	// 	const {id} = request.params
-	// 	const {name, email} = request.body
-
-	// 	const film = await prisma.film.update({
-	// 		where: {
-	// 			id: Number(id),
-	// 		},
-	// 		data: {
-	// 			name,
-	// 			email,
-	// 		},
-	// 	})
-
-	// 	reply.send(film)
-	// })
-
-	/**
 	 * DELETE ONE FILMS
 	 */
-	// app.delete("/films/:id", async (request, reply) => {
-	// 	const {id} = request.params
+	app.delete("/films/:id", async (request, reply) => {
+		const {id} = request.params
 
-	// 	const film = await prisma.film.delete({
-	// 		where: {
-	// 			id: Number(id),
-	// 		},
-	// 	})
+		const film = await Film.findOne(
+            {
+                _id: id
+            }
+        )
 
-	// 	reply.send(film)
-	// })
+        if (!film) {
+            return reply.status(404).send({
+                message: "Not found"
+            })
+        }else{
+            await film.remove();
+            return reply.send(film);
+        }
+	})
 }
 
 module.exports = {

@@ -1,311 +1,298 @@
-// const fastify = require("fastify");
-// const { PrismaClient } = require("@prisma/client");
+const {Vehicle} = require("../models/index.js")
+const mongooseToSwagger = require("mongoose-to-swagger")
 
-// const prisma = new PrismaClient();
-// const app = fastify({ logger: true });
-// /**
-//  * CREATE ONE VEHICLE
-//  */
+const routes = async (app) => {
+    const path = "vehicles";
+    const singular = "vehicle";
+    const plural = "vehicles";
 
-// app.post(
-//   "/vehicles",
-//   {
-//     schema: {
-//       tags: ["Vehicles"],
-//       summary: "Create a new vehicle",
-//       //   params: {
-//       //     type: "object",
-//       //     properties: {
-//       //       id: {
-//       //         type: "string",
-//       //         description: "user id",
-//       //       },
-//       //     },
-//       //   },
-//       body: {
-//         type: "object",
-//         properties: {
-//           name: {
-//             type: "string",
-//             required: ["name"],
-//             exemple: "Lorem ipsum",
-//           },
-//           //   obj: {
-//           //     type: "object",
-//           //     properties: {
-//           //       some: { type: "string" },
-//           //     },
-//           //   },
-//         },
-//       },
-//       response: {
-//         201: {
-//           description: "Successful response",
-//           type: "object",
-//           properties: {
-//             name: { type: "string" },
-//           },
-//         },
-//         // default: {
-//         //   description: "Default response",
-//         //   type: "object ",
-//         //   properties: {
-//         //     foo: { type: "string" },
-//         //   },
-//         // },
-//       },
-//       security: [
-//         {
-//           JWT: [],
-//         },
-//       ],
-//     },
-//   },
-//   async (request, reply) => {
-//     const { name, email } = request.body;
+	const tags = ["Vehicles"];
+    const Collection = mongooseToSwagger(Vehicle);
 
-//     const people = await prisma.people.create({
-//       data: {
-//         name,
-//         email,
-//       },
-//     });
+    const EntityProperties = {};
+    const EntityPropertiesCreate = {};
+    const EntityPropertiesUpdate = {};
+    Object.entries(Collection.properties).forEach(([key, value]) => {
+        if (value.type === 'array' && value.items && value.items.type === 'schemaobjectid') {
+            value.items = {
+                type: 'array',
+                items: {
+                    type: 'integer'
+                }
+            }
+        }
+        // On push sur la collection properties
+        EntityProperties[key] = value;
+        if (key !== '_id') {
+            EntityPropertiesCreate[key] = value;
+            EntityPropertiesUpdate[key] = value;
+        }
+    });
 
-//     reply.send(people);
-//   }
-// );
+	/**
+	 * GET ALL
+	 */
+	app.get(
+		`/${path}`,
+		{
+            schema: {
+                description: `Get ${plural}`,
+                tags: tags,
+                summary:  `Get ${plural}`,
+                params: {
+                    type: "object",
+                    properties: {
+                        page: {
+                            type: "number",
+                            default: 1,
+                        },
+                        limit: {
+                            type: "number",
+                            default: 10,
+                        },
+                        order: {
+                            type: "string",
+                            default: "ASC",
+                        },
+                    },
+                },
+                response: {
+                    200: {
+                        description: "Successful response",
+                        type: "object",
+                        properties: {
+                            count: {
+                                type: "number",
+                            },
+                            page: {
+                                type: "number",
+                            },
+                            limit: {
+                                type: "number",
+                            },
+                            data: {
+                                type: "array",
+                            },
+                        },
+                    },
+                },
+            },
+			// onRequest: [app.authenticate],
+		},
+		async (request, reply) => {
+            try {
+                // const {page, limit, order} = request.params
+                const page = request.params.page || 1
+                const limit = request.params.limit || 10
+                const order = request.params.order == "ASC" ? "asc" : "desc"
 
-// /**
-//  * GET ALL VEHICLES
-//  */
+                const total = await Species.find().countDocuments()
 
-// app.get(
-//   "/vehicles",
-//   {
-//     schema: {
-//       tags: ["Vehicles"],
-//       summary: "Get all Vehicles",
-//       params: {
-//         type: "object",
-//         properties: {
-//           id: {
-//             type: "string",
-//             description: "user id",
-//           },
-//         },
-//       },
-//       body: {
-//         type: "object",
-//         properties: {
-//           name: {
-//             type: "string",
-//             required: ["name"],
-//             exemple: "Lorem ipsum",
-//           },
-//           //   obj: {
-//           //     type: "object",
-//           //     properties: {
-//           //       some: { type: "string" },
-//           //     },
-//           //   },
-//         },
-//       },
-//       response: {
-//         201: {
-//           description: "Successful response",
-//           type: "object",
-//           properties: {
-//             name: { type: "string" },
-//           },
-//         },
-//         // default: {
-//         //   description: "Default response",
-//         //   type: "object ",
-//         //   properties: {
-//         //     foo: { type: "string" },
-//         //   },
-//         // },
-//       },
-//       security: [
-//         {
-//           JWT: [],
-//         },
-//       ],
-//     },
-//   },
-//   async (request, reply) => {
-//     const peoples = await prisma.people.findMany();
+                const elements = await Species.find().limit(limit).skip((page - 1) * limit).sort({title: order})
 
-//     reply.send(peoples);
-//   }
-// );
+                return reply.send({
+                    count: total,
+                    page: page,
+                    limit: limit,
+                    data: elements,
+                })
+            } catch (error) {
+                return reply.status(400).send({
+                    message: error.message
+                })
+            }
+		}
+	)
 
-// /**
-//  * GET ONE VEHICLE BY ID
-//  */
+	/**
+	 * CREATE ONE
+	 */
+	app.post(
+		`/${path}`,
+		{
+            schema: {
+                summary: `Create new ${singular}`,
+                tags: tags,
+                body: {
+                    type: "object",
+                    properties: EntityPropertiesCreate,
+                },
+                response: {
+                    200: {
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    type: "object",
+                                    properties: EntityProperties,
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+		},
+		async (request, reply) => {
+            try {
+                const body = request.body
+                const element = new Species(body)
+                await element.save()
+                return reply.send(element)
+            } catch (error) {
+                return reply.status(400).send({
+                    message: error.message
+                })
+            }
+			
+		}
+	)
 
-// app.get(
-//   "/vehicles/:id",
-//   {
-//     schema: {
-//       tags: ["Vehicles"],
-//       summary: "Get One vehicle by id",
-//       params: {
-//         type: "object",
-//         properties: {
-//           id: {
-//             type: "string",
-//             description: "user id",
-//           },
-//         },
-//       },
-//       response: {
-//         201: {
-//           description: "Successful response",
-//           type: "object",
-//           properties: {
-//             name: { type: "string" },
-//           },
-//         },
-//         // default: {
-//         //   description: "Default response",
-//         //   type: "object ",
-//         //   properties: {
-//         //     foo: { type: "string" },
-//         //   },
-//         // },
-//       },
-//       security: [
-//         {
-//           JWT: [],
-//         },
-//       ],
-//     },
-//   },
-//   async (request, reply) => {
-//     const { id } = request.params;
+	/**
+	 * GET ONE
+	 */
+	app.get(
+		`/${path}/:id`,
+		{
+            schema: {
+                tags: tags,
+                summary: `Get one ${singular}`,	
+                response: {
+                    200: {
+                        response: 200,
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    type: "object",
+                                    properties: EntityProperties,
+                                },
+                            },
+                        },
+                    },
+                },
+            }
+		},
+		async (request, reply) => {
+            try {
+                const id = request.params.id
 
-//     const people = await prisma.people.findUnique({
-//       where: {
-//         id: Number(id),
-//       },
-//     });
+                const element = await Species.findOne(
+                    {
+                        _id: id
+                    }
+                )
+                return reply.send(element)
+            } catch (error) {
+                return reply.status(400).send({
+                    message: error.message
+                })
+            }
+		}
+	)
 
-//     reply.send(people);
-//   }
-// );
+	/**
+	 * UPDATE ONE
+	 */
+	app.put(
+        `/${path}/:id`,
+        {
+            schema: {
+                tags: tags,
+                summary: `Update one ${singular}`,
+                body: {
+                    type: "object",
+                    properties: EntityPropertiesUpdate,
+                },
+                response: {
+                    200: {
+                        response: 200,
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    type: "object",
+                                    properties: EntityProperties,
+                                },
+                            },
+                        },
+                    },
+                },
+            }
+		},
+        async (request, reply) => {
+            try {
+                const id = request.params.id
 
-// /**
-//  * UPDATE ONE VEHICLE
-//  */
+                const element = await Species.findOneById(
+                    {
+                        _id: id
+                    },
+                )
 
-// app.put(
-//   "/vehicles/:id",
-//   {
-//     schema: {
-//       tags: ["Vehicles"],
-//       summary: "Update One vehicle",
-//       params: {
-//         type: "object",
-//         properties: {
-//           id: {
-//             type: "string",
-//             description: "user id",
-//           },
-//         },
-//       },
-//       response: {
-//         201: {
-//           description: "Successful response",
-//           type: "object",
-//           properties: {
-//             name: { type: "string" },
-//           },
-//         },
-//         // default: {
-//         //   description: "Default response",
-//         //   type: "object ",
-//         //   properties: {
-//         //     foo: { type: "string" },
-//         //   },
-//         // },
-//       },
-//       security: [
-//         {
-//           JWT: [],
-//         },
-//       ],
-//     },
-//   },
-//   async (request, reply) => {
-//     const { id } = request.params;
-//     const { name, email } = request.body;
+                // On vérifie si l'element existe
+                if (!element) {
+                    return reply.status(404).send({
+                        message: "Not found"
+                    })
+                }
 
-//     const people = await prisma.people.update({
-//       where: {
-//         id: Number(id),
-//       },
-//       data: {
-//         name,
-//         email,
-//       },
-//     });
+                // On met à jour
+                await element.save();
 
-//     reply.send(people);
-//   }
-// );
+                return reply.send(element);
+            } catch (error) {
+                return reply.status(400).send({
+                    message: error.message
+                })
+            }
+		}
+	)
 
-// /**
-//  * DELETE ONE VEHICLE
-//  */
+	/**
+	 * DELETE ONE
+	 */
+	app.delete(
+        `/${path}/:id`,
+        {
+            schema: {
+                tags: tags,
+                summary: `Delete one ${singular}`,
+                body: {
+                    type: "object",
+                    properties: EntityPropertiesUpdate,
+                },
+                response: {
+                    200: {
+                        response: 200,
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    type: "object",
+                                    properties: EntityProperties,
+                                },
+                            },
+                        },
+                    },
+                },
+            }
+        },
+        async (request, reply) => {
+            const {id} = request.params
 
-// app.delete(
-//   "/vehicles/:id",
-//   {
-//     schema: {
-//       tags: ["Vehicles"],
-//       summary: "Delete One vehicle",
-//       params: {
-//         type: "object",
-//         properties: {
-//           id: {
-//             type: "string",
-//             description: "user id",
-//           },
-//         },
-//       },
-//       response: {
-//         201: {
-//           description: "Successful response",
-//           type: "object",
-//           properties: {
-//             name: { type: "string" },
-//           },
-//         },
-//         // default: {
-//         //   description: "Default response",
-//         //   type: "object ",
-//         //   properties: {
-//         //     foo: { type: "string" },
-//         //   },
-//         // },
-//       },
-//       security: [
-//         {
-//           JWT: [],
-//         },
-//       ],
-//     },
-//   },
-//   async (request, reply) => {
-//     const { id } = request.params;
+            const element = await Species.findOne(
+                {
+                    _id: id
+                }
+            )
 
-//     const people = await prisma.people.delete({
-//       where: {
-//         id: Number(id),
-//       },
-//     });
+            if (!element) {
+                return reply.status(404).send({
+                    message: "Not found"
+                })
+            }else{
+                await element.remove();
+                return reply.send(element);
+            }
+        })
+}
 
-//     reply.send(people);
-//   }
-// );
+module.exports = {
+	routes: routes,
+}

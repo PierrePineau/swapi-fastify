@@ -77,7 +77,6 @@ const speciesSchema = new mongoose.Schema({
 
 const Species = mongoose.model("Species", speciesSchema);
 
-
 // Modèle pour l'entité "Vehicles"
 const vehicleSchema = new mongoose.Schema({
   name: { type: String, required: true},
@@ -98,7 +97,6 @@ const vehicleSchema = new mongoose.Schema({
 }, {collection: "Vehicles"});
 
 const Vehicle = mongoose.model("Vehicle", vehicleSchema);
-
 
 // Modèle pour l'entité "Starships"
 const starshipSchema = new mongoose.Schema({

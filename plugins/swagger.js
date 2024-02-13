@@ -153,7 +153,7 @@ const configSwagger = {
                 description: "Species API",
             },
             StarShipsTag = {
-                name: "StarShips",
+                name: "Starships",
                 description: "StarShips API",
             },
             VehiclesTag = {

@@ -1,6 +1,3 @@
-// console.log(absolutePath);
-// const path = require('path')
-// const absolutePath = path.resolve(__dirname, '../routes')
 const configSwaggerUI = {
 	routePrefix: "/doc",
     uiConfig: {

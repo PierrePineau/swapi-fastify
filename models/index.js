@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const mongooseToSwagger = require("mongoose-to-swagger")
 // Modèle pour l'entité "People"
 const peopleSchema = new mongoose.Schema({
   name: String,
@@ -112,5 +113,13 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model("User", userSchema);
 
+module.exports = { 
+    Film,
+    People,
+    Planet,
+    Species,
+    Vehicle,
+    Starship,
+    User,
+}
 
-module.exports = { Film, People, Planet, Species, Vehicle, Starship, User };

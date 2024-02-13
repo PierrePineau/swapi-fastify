@@ -7,35 +7,57 @@ const routes = async (app) => {
     app.register(require('fastify-bcrypt'), {
         saltWorkFactor: 12
     })
-
-    // app.bcrypt.hash('password')
-    //     .then(hash => app.bcrypt.compare('password', hash))
-    //     .then(match => console.log(match ? 'Matched!' : 'Not matched!'))
-    //     .catch(err => console.error(err.message))
-
     /**
-	 * SIGNIN
+	 * SIGNUP
 	 */
     app.post(
-		"/signin",
+		"/signup",
 		{
 			schema: {
+				summary: "Create new user",
 				description: "Create new user",
 				tags: tags,
-				// summary: "Create a new film",
-				body: {
-					type: "object",
-					properties: {
+                body: {
+                    type: "object",
+                    properties: {
                         email: {
                             type: "string",
-                            default: "user@gmail.com"
+                            default: "user@gmail.com",
                         },
                         password: {
                             type: "string",
-                            default: "password"
-                        }
-					},
-				},
+                            default: "password",
+                        },
+                    },
+                },
+                response: {
+                    200: {
+                        description: "Successful response",
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    type: "object",
+                                    properties: {
+                                        message: {
+                                            type: "string",
+                                        },
+                                        data: {
+                                            type: "object",
+                                            properties: {
+                                                email: {
+                                                    type: "string",
+                                                },
+                                                token: {
+                                                    type: "string",
+                                                },
+                                            },
+                                        },
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
 			},
 		},
 		async (request, reply) => {
@@ -44,7 +66,7 @@ const routes = async (app) => {
             // On vérifie si l'utilisateur existe
             const userAlreadyExist = await User.findOne({
                 email: email
-            })
+            });
 
             if(userAlreadyExist){
                 reply.status(401).send({message: "User already exist"})
@@ -70,10 +92,10 @@ const routes = async (app) => {
 		}
 	)
 	/**
-	 * SIGNUP
+	 * SIGNIN
 	 */
 	app.post(
-		"/signup",
+		"/signin",
 		{
 			schema: {
 				description: "Authentification",

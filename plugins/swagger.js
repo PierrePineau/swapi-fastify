@@ -1,3 +1,14 @@
+const { Film, People, Planet, Species, Vehicle, Starship, User } = require("../models/index.js");
+const mongooseToSwagger = require("mongoose-to-swagger");
+
+const UserSwagger = mongooseToSwagger(User);
+const FilmSwagger = mongooseToSwagger(Film);
+const PeopleSwagger = mongooseToSwagger(People);
+const PlanetSwagger = mongooseToSwagger(Planet);
+const SpeciesSwagger = mongooseToSwagger(Species);
+const VehicleSwagger = mongooseToSwagger(Vehicle);
+const StarshipSwagger = mongooseToSwagger(Starship);
+
 const configSwagger = {
     openapi: {
         info: {
@@ -10,8 +21,17 @@ const configSwagger = {
             description: "Find more info here",
         },
         schemes: ["http"],
-        // consumes: ["application/json"],
-        // produces: ["application/json"],
+        consumes: ["application/json"],
+        produces: ["application/json"],
+        // definitions: {
+        //     User: UserSwagger,
+        //     Film: FilmSwagger,
+        //     People: PeopleSwagger,
+        //     Planet: PlanetSwagger,
+        //     Specie: SpeciesSwagger,
+        //     Vehicle: VehicleSwagger,
+        //     Starship: StarshipSwagger,
+        // },
         components: {
             securitySchemes: {
                 JWT: {
@@ -21,6 +41,13 @@ const configSwagger = {
                 }
             },
             schemas: {
+                User: UserSwagger,
+                Film: FilmSwagger,
+                People: PeopleSwagger,
+                Planet: PlanetSwagger,
+                Specie: SpeciesSwagger,
+                Vehicle: VehicleSwagger,
+                Starship: StarshipSwagger,
             },
             parameters: {
                 page: {
@@ -29,7 +56,8 @@ const configSwagger = {
                     description: "Page of item",
                     required: false,
                     schema: {
-                        type: "integer",
+                        type: "number",
+                        default: 1,
                         minimum: 1,
                     },
                 },
@@ -39,7 +67,8 @@ const configSwagger = {
                     description: "Limit of item",
                     required: false,
                     schema: {
-                        type: "integer",
+                        type: "number",
+                        default: 10,
                         minimum: 1,
                     },
                 },
@@ -50,7 +79,53 @@ const configSwagger = {
                     required: false,
                     schema: {
                         type: "string",
+                        default: "DESC",
                         enum: ["ASC", "DESC"],
+                    },
+                },
+                list : {
+                    name: "List",
+                    in: "query",
+                    description: "List of item",
+                    required: false,
+                    schema: {
+                        type: "object",
+                        properties: {
+                            page: {
+                                type: "integer",
+                                minimum: 1,
+                            },
+                            limit: {
+                                type: "integer",
+                                minimum: 1,
+                            },
+                            order: {
+                                type: "string",
+                                enum: ["ASC", "DESC"],
+                            },
+                        },
+                    },
+                },
+            },
+            responses: {
+                list: {
+                    type: "object",
+                    properties: {
+                        count: {
+                            type: "number",
+                        },
+                        page: {
+                            type: "number",
+                        },
+                        limit: {
+                            type: "number",
+                        },
+                        data: {
+                            type: "array",
+                            items: {
+                                type: "object",
+                            },
+                        },
                     },
                 },
             },
@@ -61,27 +136,27 @@ const configSwagger = {
                 description: "Auth API",
                 order: 1,
             },
-            Films = {
+            FilmsTag = {
                 name: "Films",
                 description: "Films API",
             },
-            People = {
+            PeoplesTag = {
                 name: "People",
                 description: "People API",
             },
-            Planets = {
+            PlanetsTag = {
                 name: "Planets",
                 description: "Planets API",
             },
-            Species = {
+            SpeciesTag = {
                 name: "Species",
                 description: "Species API",
             },
-            StarShips = {
+            StarShipsTag = {
                 name: "StarShips",
                 description: "StarShips API",
             },
-            Vehicles = {
+            VehiclesTag = {
                 name: "Vehicles",
                 description: "Vehicles API",
             },
@@ -91,6 +166,10 @@ const configSwagger = {
                 "JWT": []
             }
         ],
+        mode: "dynamic",
+        // definitions: {
+            
+        // },
         // exposeRoute: true,
         // hideUntagged: false,
     }

@@ -1,18 +1,23 @@
 const {Film} = require("../models/index.js")
+const mongooseToSwagger = require("mongoose-to-swagger")
+const CollectionsProperties = require("../utils/collectionsProperties.js")
 
 const routes = async (app) => {
-	const tags = ["Films"]
+	const tags = ["Films"];
+
+    const FilmSwagger = mongooseToSwagger(Film);
+    
 	/**
 	 * GET FILMS
 	 */
 	app.get(
 		"/films",
 		{
-			schema: {
-				description: "Get Films",
-				tags: tags,
-				summary: "Get all films",
-				params: {
+            schema: {
+                description: "Get Films",
+                tags: tags,
+                summary: "Get all films",
+                params: {
                     type: "object",
                     properties: {
                         page: {
@@ -25,70 +30,48 @@ const routes = async (app) => {
                         },
                         order: {
                             type: "string",
-                            default: "DESC",
-                            enum: ["ASC", "DESC"],
+                            default: "ASC",
                         },
                     },
-					// $ref: "#/components/parameters/List",
-					// required: ['id']
-				},
-				response: {
-					200: {
-						description: "Successful response",
+                },
+                response: {
+                    200: {
+                        description: "Successful response",
                         type: "object",
                         properties: {
-                            count: { 
-                                type: "number" 
+                            count: {
+                                type: "number",
                             },
-                            page: { 
-                                type: "number" 
+                            page: {
+                                type: "number",
                             },
                             limit: {
-                                type: "number" 
+                                type: "number",
                             },
-                            data: { 
+                            data: {
                                 type: "array",
                                 // example:
-                            }
+                            },
                         },
-                        // $ref: "#/components/responses/List",
-					},
-				},
-			},
-            onRequest: [app.authenticate]
+                    },
+                },
+            },
+			onRequest: [app.authenticate],
 		},
 		async (request, reply) => {
 			// const {page, limit, order} = request.params
-            const page =  request.params.page || 1;
-            const limit = request.params.limit || 10;
-            const order = request.params.order == "ASC" ? "asc" : "desc";
+			const page = request.params.page || 1
+			const limit = request.params.limit || 10
+			const order = request.params.order == "ASC" ? "asc" : "desc"
 
-            // const repoFilms = app.mongo.db.collection('Films');
-            const films = await Film.find().limit(10)
-
-            // const films = await prisma.films.findMany({
-            //     skip: (page - 1) * limit,
-            //     take: limit,
-            //     orderBy : {
-            //         edited: order
-            //     },
-            //     select : {
-            //         producer: true,
-            //     }
-            // })
-
-
-            films.forEach(film => {
-                console.log(film);
-            });
-            // console.log(films);
+			const films = await Film.find().limit(limit).skip((page - 1) * limit).sort({title: order})
 
 			return reply.send({
-                count: films.length,
-                page : page,
-                limit : limit,
-                data: films
-            })
+				count: films.length,
+				page: page,
+				limit: limit,
+				data: films,
+			})
 		}
 	)
 
@@ -98,21 +81,27 @@ const routes = async (app) => {
 	app.post(
 		"/films",
 		{
-			schema: {
-				description: "Create a new film",
-				tags: tags,
-				summary: "Create a new film",
-				body: {
-					type: "object",
-					properties: {
-						title: {type: "string"},
-						producer: {type: "string"}
-					},
-				},
-			},
+            schema: {
+                summary: "Create a new film",
+                description: "Create a new film",
+                tags: tags,
+                body: {
+                    type: "object",
+                    properties: FilmSwagger.properties,
+                },
+                response: {
+                    200: {
+                        content: {
+                            "application/json": {
+                                $ref: "#/components/schemas/Film",
+                            },
+                        },
+                    },
+                },
+            },
 		},
 		async (request, reply) => {
-			const {title, producer, year } = request.body
+			const {title, producer, year} = request.body
 
 			const film = await prisma.films.create({
 				data: {
@@ -125,31 +114,38 @@ const routes = async (app) => {
 		}
 	)
 
-    /**
+	/**
 	 * GET ONE FILM BY ID
 	 */
 	app.get(
 		"/films/:id",
 		{
-			schema: {
-				description: "Get one film by id",
-				tags: tags,
-				summary: "Get one film by id",
-				response: {
-					200: {
-                        // $ref: "#/components/responses/List",
-					},
-				},
-			},
+            schema: {
+                description: "Get one film by id",
+                tags: tags,
+                summary: "Get one film by id",
+                response: {
+                    200: {
+                        response: 200,
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    // $ref: "#/components/schemas/Film",
+                                },
+                            },
+                        },
+                    },
+                },
+            }
 		},
 		async (request, reply) => {
 			const id = request.params.id
 
-            const film = await prisma.people.findUnique({
-                where: {
-                    id: Number(id),
-                },
-            })
+			const film = await prisma.people.findUnique({
+				where: {
+					id: Number(id),
+				},
+			})
 			reply.send(film)
 		}
 	)

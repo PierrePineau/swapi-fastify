@@ -554,6 +554,11 @@ mongodb@^6.0.0, mongodb@6.2.0:
     bson "^6.2.0"
     mongodb-connection-string-url "^2.6.0"
 
+mongoose-to-swagger@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.npmjs.org/mongoose-to-swagger/-/mongoose-to-swagger-1.5.1.tgz"
+  integrity sha512-gwEr0NhA+DyGswtgypIoV/iR0RGX4jY/SE9zmYYk6qpG2C83urcQfYJWzm7PsDPo3snMm8XjBYiAtLyYAqirXA==
+
 mongoose@^8.0.0:
   version "8.0.0"
   resolved "https://registry.npmjs.org/mongoose/-/mongoose-8.0.0.tgz"

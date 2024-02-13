@@ -3,15 +3,18 @@ const fastify = require("fastify")()
 const configSwagger = require("./plugins/swagger.js")
 const configSwaggerUI = require("./plugins/swagger-ui.js")
 const mongoose = require("mongoose")
-const {People, Planet, Film, Species, Vehicle, Starship} = require("./mongoose/model.js")
+const {Film} = require("./mongoose/model.js")
 const path = require("path")
 
 // const films = require("./routes/films.js");
 // const people = require("./routes/people.js");
-const sequelizeFastify = require("sequelize-fastify")
+// const sequelizeFastify = require("sequelize-fastify")
 
 const start = async () => {
 	try {
+
+        
+
 		// Enregistre le plugin fastify-swagger
 		await fastify.register(require("@fastify/swagger"), configSwagger)
 
@@ -83,11 +86,11 @@ const start = async () => {
 			},
 			async (request, reply) => {
 				// const {page, limit, order} = request.params
-				const page = request.params.page || 1
-				const limit = request.params.limit || 10
-				const order = request.params.order == "ASC" ? "asc" : "desc"
+				const page = request.params.page || 1;
+				const limit = request.params.limit || 10;
+				const order = request.params.order == "ASC" ? "asc" : "desc";
 
-				const films = await Film.find().limit(10)
+				const films = await Film.find().limit(10);
 
 				films.forEach((film) => {
 					console.log(film)
@@ -249,52 +252,52 @@ const start = async () => {
 		// console.log(process.env.DATABASE_URL);
 		// const PORT = 3001 || 16743;
 
-		// 	const DATABASE_URL = "mongodb+srv://LeoTeix:1234@cluster0.rolrany.mongodb.net/swapi?retryWrites=true&w=majority"
+        const DATABASE_URL = "mongodb+srv://LeoTeix:1234@cluster0.rolrany.mongodb.net/swapi?retryWrites=true&w=majority"
+        mongoose
+            .connect(DATABASE_URL, {
+                // useNewUrlParser: true,
+                // useUnifiedTopology: true,
+            })
+            .then(
+                async () => {
+                    await fastify.listen({port: 3000})
+                    console.log(`Serveur lancé sur http://localhost:${fastify.server.address().port}/doc`)
+                }
+                // fastify.listen(, () =>
+                //   console.log(`Server: http://localhost:${PORT}}`)
+                // )
+            )
+            .catch((error) => console.log(`${error} did not connect`))
 
-		// 	mongoose
-		// 		.connect(DATABASE_URL, {
-		// 			// useNewUrlParser: true,
-		// 			// useUnifiedTopology: true,
-		// 		})
-		// 		.then(
-		// 			async () => {
-		// 				await fastify.listen({port: 3000})
-		// 				console.log(`Serveur lancé sur http://localhost:${fastify.server.address().port}/doc`)
-		// 			}
-		// 			// fastify.listen(, () =>
-		// 			//   console.log(`Server: http://localhost:${PORT}}`)
-		// 			// )
-		// 		)
-		// 		.catch((error) => console.log(`${error} did not connect`))
-		await fastify
-			.register(sequelizeFastify, {
-				instance: "db",
-				sequelizeOptions: {
-					dialect: "mysql" /* one of 'mysql' | 'mariadb' | 'postgres' | 'mssql' */,
-					database: process.env.DATABASE_NAME,
-					username: process.env.DATABASE_USER_NAME,
-					password: process.env.DATABASE_USER_PASSWORD,
-					host: process.env.DATABASE_HOST_OR_SERVER,
-					port: process.env.DATABASE_PORT,
-				},
-			})
-			.ready(async () => {
-				try {
-					// first connection
-					const result = await fastify.db.authenticate()
+		// await fastify
+		// 	.register(sequelizeFastify, {
+		// 		instance: "db",
+		// 		sequelizeOptions: {
+		// 			dialect: "mysql" /* one of 'mysql' | 'mariadb' | 'postgres' | 'mssql' */,
+		// 			database: process.env.DATABASE_NAME,
+		// 			username: process.env.DATABASE_USER_NAME,
+		// 			password: process.env.DATABASE_USER_PASSWORD,
+		// 			host: process.env.DATABASE_HOST_OR_SERVER,
+		// 			port: process.env.DATABASE_PORT,
+		// 		},
+		// 	})
+		// 	.ready(async () => {
+		// 		try {
+		// 			// first connection
+		// 			const result = await fastify.db.authenticate()
 
-					await fastify.listen({port: 3000})
-					console.log(`Serveur lancé sur http://localhost:${fastify.server.address().port}/doc`)
+		// 			await fastify.listen({port: 3000})
+		// 			console.log(`Serveur lancé sur http://localhost:${fastify.server.address().port}/doc`)
 
-					console.log(chalk.green("Database connection is successfully established."))
-				} catch (err) {
-					console.log(chalk.red(`Connection could not established: ${err}`))
-					process.exit(1)
-				}
-				// } finally {
-				//     fastify.close()
-				// }
-			})
+		// 			console.log(chalk.green("Database connection is successfully established."))
+		// 		} catch (err) {
+		// 			console.log(chalk.red(`Connection could not established: ${err}`))
+		// 			process.exit(1)
+		// 		}
+		// 		// } finally {
+		// 		//     fastify.close()
+		// 		// }
+		// 	})
 		// 	// Lance le serveur Fastify
 	} catch (err) {
 		console.error(err)

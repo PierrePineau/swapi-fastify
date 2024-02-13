@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 // Modèle pour l'entité "People"
 const peopleSchema = new mongoose.Schema({
   name: String,
@@ -15,9 +14,9 @@ const peopleSchema = new mongoose.Schema({
   species: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Species' }],
   vehicles: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Vehicle' }],
   starships: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Starship' }],
-});
+}, {collection: "People"});
 
-const People = mongoose.model('People', peopleSchema);
+const People = mongoose.model("People", peopleSchema);
 
 // Modèle pour l'entité "Planets"
 const planetSchema = new mongoose.Schema({
@@ -27,26 +26,25 @@ const planetSchema = new mongoose.Schema({
   gravity: String,
   population: String,
   films: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Film' }],
-});
+}, {collection: "Planets"});
 
-const Planet = mongoose.model('Planet', planetSchema);
+const Planet = mongoose.model("Planet", planetSchema);
 
 // Modèle pour l'entité "Films"
 const filmSchema = new mongoose.Schema({
-  title: String,
-  episode_id: Number,
-  director: String,
-  producer: String,
-  release_date: String,
-  characters: [{ type: mongoose.Schema.Types.ObjectId, ref: 'People' }],
-  planets: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Planet' }],
-  species: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Species' }],
-  vehicles: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Vehicle' }],
-  starships: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Starship' }],
-});
+    title: String,
+    episode_id: Number,
+    director: String,
+    producer: String,
+    release_date: String,
+    characters: [{ type: mongoose.Schema.Types.ObjectId, ref: 'People' }],
+    planets: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Planet' }],
+    species: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Species' }],
+    vehicles: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Vehicle' }],
+    starships: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Starship' }],
+}, {collection: "Films"});
 
-const Film = mongoose.model('Film', filmSchema);
-
+const Film = mongoose.model("Films", filmSchema)
 // Modèle pour l'entité "Species"
 const speciesSchema = new mongoose.Schema({
   name: String,
@@ -61,9 +59,10 @@ const speciesSchema = new mongoose.Schema({
   homeworld: String,
   films: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Film' }],
   people: [{ type: mongoose.Schema.Types.ObjectId, ref: 'People' }],
-});
+}, {collection: "Species"});
 
-const Species = mongoose.model('Species', speciesSchema);
+const Species = mongoose.model("Species", speciesSchema);
+
 
 // Modèle pour l'entité "Vehicles"
 const vehicleSchema = new mongoose.Schema({
@@ -80,9 +79,10 @@ const vehicleSchema = new mongoose.Schema({
   vehicle_class: String,
   films: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Film' }],
   pilots: [{ type: mongoose.Schema.Types.ObjectId, ref: 'People' }],
-});
+}, {collection: "Vehicles"});
 
-const Vehicle = mongoose.model('Vehicle', vehicleSchema);
+const Vehicle = mongoose.model("Vehicle", vehicleSchema);
+
 
 // Modèle pour l'entité "Starships"
 const starshipSchema = new mongoose.Schema({
@@ -99,8 +99,9 @@ const starshipSchema = new mongoose.Schema({
   starship_class: String,
   films: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Film' }],
   pilots: [{ type: mongoose.Schema.Types.ObjectId, ref: 'People' }],
-});
+}, {collection: "Starships"});
 
-const Starship = mongoose.model('Starship', starshipSchema);
+const Starship = mongoose.model("Starship", starshipSchema);
 
-module.exports = { People, Planet, Film, Species, Vehicle, Starship };
+
+module.exports = { Film, People, Planet, Species, Vehicle, Starship };

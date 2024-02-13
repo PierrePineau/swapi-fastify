@@ -51,33 +51,74 @@ const routes = async (app) => {
 					},
 				},
 			},
+            onRequest: [app.authenticate]
 		},
 		async (request, reply) => {
             const page =  request.params.page || 1;
             const limit = request.params.limit || 10;
             const order = request.params.order == "ASC" ? "asc" : "desc";
 
-            const people = await People.find().limit(10)
+            const peoples = await People.find().limit(10)
 
-            people.forEach(people => {
+            peoples.forEach(people => {
                 console.log(people);
             });
 
 			return reply.send({
-                count: people.length,
+                count: peoples.length,
                 page : page,
                 limit : limit,
-                data: people
+                data: peoples
             })
 		}
 	)
 
-    // GET ONE PEA
+    // GET ONE BY ID
     app.get(
+        "/people/:id",
+        {
+            schema: {
+                description: "Get People by ID",
+                tags: tags,
+                summary: "Get People by ID",
+                response: {
+                    200: {
+                        description: "Successful response",
+                        type: "object",
+                        properties: {
+                            message: {
+                                type: "string"
+                            },
+                            data: {
+                                type: "object",
+                            }
+                        },
+                    },
+                    404: {
+                        description: "Person not found",
+                        type: "object",
+                        properties: {
+                            message: { type: "string" },
+                        },
+                    },
+                },
+            },
+        },
+        async (request, reply) => {
+            const id = request.params.id
 
+            const people = await People.findById(id).exec()
+
+            console.log(people);
+
+            // const data = Object.entries(people)
+
+            return reply.send({
+                message: "Lorem",
+                data: people
+            })
+        }
     )
-
-
 }
 
 module.exports = {

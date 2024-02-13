@@ -1,6 +1,5 @@
 [
-{
-    "fields": {
+    {
         "starships": [
             2,
             3,
@@ -56,13 +55,11 @@
             3,
             4,
             5
-        ]
+        ],
+        "model": "resources.film",
+        "pk": 1
     },
-    "model": "resources.film",
-    "pk": 1
-},
-{
-    "fields": {
+    {
         "starships": [
             3,
             10,
@@ -120,13 +117,11 @@
             3,
             6,
             7
-        ]
+        ],
+        "model": "resources.film",
+        "pk": 2
     },
-    "model": "resources.film",
-    "pk": 2
-},
-{
-    "fields": {
+    {
         "starships": [
             2,
             3,
@@ -198,13 +193,11 @@
             9,
             10,
             15
-        ]
+        ],
+        "model": "resources.film",
+        "pk": 3
     },
-    "model": "resources.film",
-    "pk": 3
-},
-{
-    "fields": {
+    {
         "starships": [
             31,
             32,
@@ -291,13 +284,11 @@
             25,
             26,
             27
-        ]
+        ],
+        "model": "resources.film",
+        "pk": 4
     },
-    "model": "resources.film",
-    "pk": 4
-},
-{
-    "fields": {
+    {
         "starships": [
             21,
             32,
@@ -394,13 +385,11 @@
             33,
             34,
             35
-        ]
+        ],
+        "model": "resources.film",
+        "pk": 5
     },
-    "model": "resources.film",
-    "pk": 5
-},
-{
-    "fields": {
+    {
         "starships": [
             2,
             32,
@@ -510,9 +499,8 @@
             35,
             36,
             37
-        ]
-    },
-    "model": "resources.film",
-    "pk": 6
-}
+        ],
+        "model": "resources.film",
+        "pk": 6
+    }
 ]

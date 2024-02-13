@@ -1,6 +1,5 @@
 [
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:36:42.136Z",
         "classification": "mammal",
         "name": "Human",
@@ -8,24 +7,52 @@
         "created": "2014-12-10T13:52:11.567Z",
         "eye_colors": "brown, blue, green, hazel, grey, amber",
         "people": [
-            1, 4, 5, 6, 7, 9, 10, 11, 12,
-            14, 18, 19, 21, 22, 25, 26, 28,
-            29, 32, 34, 35, 39, 42, 43, 51,
-            60, 61, 62, 66, 67, 68, 69, 74,
-            81, 82
+            1,
+            4,
+            5,
+            6,
+            7,
+            9,
+            10,
+            11,
+            12,
+            14,
+            18,
+            19,
+            21,
+            22,
+            25,
+            26,
+            28,
+            29,
+            32,
+            34,
+            35,
+            39,
+            42,
+            43,
+            51,
+            60,
+            61,
+            62,
+            66,
+            67,
+            68,
+            69,
+            74,
+            81,
+            82
         ],
         "skin_colors": "caucasian, black, asian, hispanic",
         "language": "Galactic Basic",
         "hair_colors": "blonde, brown, black, red",
         "homeworld": 9,
         "average_lifespan": "120",
-        "average_height": "180"
+        "average_height": "180",
+        "model": "resources.species",
+        "pk": 1
     },
-    "model": "resources.species",
-    "pk": 1
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:36:42.139Z",
         "classification": "artificial",
         "name": "Droid",
@@ -43,13 +70,11 @@
         "hair_colors": "n/a",
         "homeworld": null,
         "average_lifespan": "indefinite",
-        "average_height": "n/a"
+        "average_height": "n/a",
+        "model": "resources.species",
+        "pk": 2
     },
-    "model": "resources.species",
-    "pk": 2
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:36:42.142Z",
         "classification": "mammal",
         "name": "Wookie",
@@ -65,13 +90,11 @@
         "hair_colors": "black, brown",
         "homeworld": 14,
         "average_lifespan": "400",
-        "average_height": "210"
+        "average_height": "210",
+        "model": "resources.species",
+        "pk": 3
     },
-    "model": "resources.species",
-    "pk": 3
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:36:42.144Z",
         "classification": "sentient",
         "name": "Rodian",
@@ -86,13 +109,11 @@
         "hair_colors": "n/a",
         "homeworld": 23,
         "average_lifespan": "unknown",
-        "average_height": "170"
+        "average_height": "170",
+        "model": "resources.species",
+        "pk": 4
     },
-    "model": "resources.species",
-    "pk": 4
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:36:42.146Z",
         "classification": "gastropod",
         "name": "Hutt",
@@ -107,13 +128,11 @@
         "hair_colors": "n/a",
         "homeworld": 24,
         "average_lifespan": "1000",
-        "average_height": "300"
+        "average_height": "300",
+        "model": "resources.species",
+        "pk": 5
     },
-    "model": "resources.species",
-    "pk": 5
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:36:42.148Z",
         "classification": "mammal",
         "name": "Yoda's species",
@@ -128,13 +147,11 @@
         "hair_colors": "brown, white",
         "homeworld": 28,
         "average_lifespan": "900",
-        "average_height": "66"
+        "average_height": "66",
+        "model": "resources.species",
+        "pk": 6
     },
-    "model": "resources.species",
-    "pk": 6
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:36:42.151Z",
         "classification": "reptile",
         "name": "Trandoshan",
@@ -149,13 +166,11 @@
         "hair_colors": "none",
         "homeworld": 29,
         "average_lifespan": "unknown",
-        "average_height": "200"
+        "average_height": "200",
+        "model": "resources.species",
+        "pk": 7
     },
-    "model": "resources.species",
-    "pk": 7
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:36:42.153Z",
         "classification": "amphibian",
         "name": "Mon Calamari",
@@ -170,13 +185,11 @@
         "hair_colors": "none",
         "homeworld": 31,
         "average_lifespan": "unknown",
-        "average_height": "160"
+        "average_height": "160",
+        "model": "resources.species",
+        "pk": 8
     },
-    "model": "resources.species",
-    "pk": 8
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:36:42.155Z",
         "classification": "mammal",
         "name": "Ewok",
@@ -191,13 +204,11 @@
         "hair_colors": "white, brown, black",
         "homeworld": 7,
         "average_lifespan": "unknown",
-        "average_height": "100"
+        "average_height": "100",
+        "model": "resources.species",
+        "pk": 9
     },
-    "model": "resources.species",
-    "pk": 9
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:36:42.157Z",
         "classification": "mammal",
         "name": "Sullustan",
@@ -212,13 +223,11 @@
         "hair_colors": "none",
         "homeworld": 33,
         "average_lifespan": "unknown",
-        "average_height": "180"
+        "average_height": "180",
+        "model": "resources.species",
+        "pk": 10
     },
-    "model": "resources.species",
-    "pk": 10
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:36:42.160Z",
         "classification": "unknown",
         "name": "Neimodian",
@@ -233,13 +242,11 @@
         "hair_colors": "none",
         "homeworld": 18,
         "average_lifespan": "unknown",
-        "average_height": "180"
+        "average_height": "180",
+        "model": "resources.species",
+        "pk": 11
     },
-    "model": "resources.species",
-    "pk": 11
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:36:42.163Z",
         "classification": "amphibian",
         "name": "Gungan",
@@ -256,13 +263,11 @@
         "hair_colors": "none",
         "homeworld": 8,
         "average_lifespan": "unknown",
-        "average_height": "190"
+        "average_height": "190",
+        "model": "resources.species",
+        "pk": 12
     },
-    "model": "resources.species",
-    "pk": 12
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:36:42.165Z",
         "classification": "mammal",
         "name": "Toydarian",
@@ -277,13 +282,11 @@
         "hair_colors": "none",
         "homeworld": 34,
         "average_lifespan": "91",
-        "average_height": "120"
+        "average_height": "120",
+        "model": "resources.species",
+        "pk": 13
     },
-    "model": "resources.species",
-    "pk": 13
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:36:42.167Z",
         "classification": "mammal",
         "name": "Dug",
@@ -298,13 +301,11 @@
         "hair_colors": "none",
         "homeworld": 35,
         "average_lifespan": "unknown",
-        "average_height": "100"
+        "average_height": "100",
+        "model": "resources.species",
+        "pk": 14
     },
-    "model": "resources.species",
-    "pk": 14
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:36:42.169Z",
         "classification": "mammals",
         "name": "Twi'lek",
@@ -320,13 +321,11 @@
         "hair_colors": "none",
         "homeworld": 37,
         "average_lifespan": "unknown",
-        "average_height": "200"
+        "average_height": "200",
+        "model": "resources.species",
+        "pk": 15
     },
-    "model": "resources.species",
-    "pk": 15
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:36:42.171Z",
         "classification": "reptile",
         "name": "Aleena",
@@ -341,13 +340,11 @@
         "hair_colors": "none",
         "homeworld": 38,
         "average_lifespan": "79",
-        "average_height": "80"
+        "average_height": "80",
+        "model": "resources.species",
+        "pk": 16
     },
-    "model": "resources.species",
-    "pk": 16
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:36:42.173Z",
         "classification": "unknown",
         "name": "Vulptereen",
@@ -362,13 +359,11 @@
         "hair_colors": "none",
         "homeworld": 39,
         "average_lifespan": "unknown",
-        "average_height": "100"
+        "average_height": "100",
+        "model": "resources.species",
+        "pk": 17
     },
-    "model": "resources.species",
-    "pk": 17
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:36:42.175Z",
         "classification": "unknown",
         "name": "Xexto",
@@ -383,13 +378,11 @@
         "hair_colors": "none",
         "homeworld": 40,
         "average_lifespan": "unknown",
-        "average_height": "125"
+        "average_height": "125",
+        "model": "resources.species",
+        "pk": 18
     },
-    "model": "resources.species",
-    "pk": 18
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:36:42.177Z",
         "classification": "unknown",
         "name": "Toong",
@@ -404,13 +397,11 @@
         "hair_colors": "none",
         "homeworld": 41,
         "average_lifespan": "unknown",
-        "average_height": "200"
+        "average_height": "200",
+        "model": "resources.species",
+        "pk": 19
     },
-    "model": "resources.species",
-    "pk": 19
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:36:42.179Z",
         "classification": "mammal",
         "name": "Cerean",
@@ -425,13 +416,11 @@
         "hair_colors": "red, blond, black, white",
         "homeworld": 43,
         "average_lifespan": "unknown",
-        "average_height": "200"
+        "average_height": "200",
+        "model": "resources.species",
+        "pk": 20
     },
-    "model": "resources.species",
-    "pk": 20
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:36:42.181Z",
         "classification": "amphibian",
         "name": "Nautolan",
@@ -446,13 +435,11 @@
         "hair_colors": "none",
         "homeworld": 44,
         "average_lifespan": "70",
-        "average_height": "180"
+        "average_height": "180",
+        "model": "resources.species",
+        "pk": 21
     },
-    "model": "resources.species",
-    "pk": 21
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:36:42.183Z",
         "classification": "mammal",
         "name": "Zabrak",
@@ -468,13 +455,11 @@
         "hair_colors": "black",
         "homeworld": 45,
         "average_lifespan": "unknown",
-        "average_height": "180"
+        "average_height": "180",
+        "model": "resources.species",
+        "pk": 22
     },
-    "model": "resources.species",
-    "pk": 22
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:36:42.186Z",
         "classification": "mammal",
         "name": "Tholothian",
@@ -489,13 +474,11 @@
         "hair_colors": "unknown",
         "homeworld": 46,
         "average_lifespan": "unknown",
-        "average_height": "unknown"
+        "average_height": "unknown",
+        "model": "resources.species",
+        "pk": 23
     },
-    "model": "resources.species",
-    "pk": 23
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:36:42.188Z",
         "classification": "unknown",
         "name": "Iktotchi",
@@ -510,13 +493,11 @@
         "hair_colors": "none",
         "homeworld": 47,
         "average_lifespan": "unknown",
-        "average_height": "180"
+        "average_height": "180",
+        "model": "resources.species",
+        "pk": 24
     },
-    "model": "resources.species",
-    "pk": 24
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:36:42.189Z",
         "classification": "mammal",
         "name": "Quermian",
@@ -531,13 +512,11 @@
         "hair_colors": "none",
         "homeworld": 48,
         "average_lifespan": "86",
-        "average_height": "240"
+        "average_height": "240",
+        "model": "resources.species",
+        "pk": 25
     },
-    "model": "resources.species",
-    "pk": 25
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:36:42.191Z",
         "classification": "unknown",
         "name": "Kel Dor",
@@ -552,13 +531,11 @@
         "hair_colors": "none",
         "homeworld": 49,
         "average_lifespan": "70",
-        "average_height": "180"
+        "average_height": "180",
+        "model": "resources.species",
+        "pk": 26
     },
-    "model": "resources.species",
-    "pk": 26
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:36:42.193Z",
         "classification": "amphibian",
         "name": "Chagrian",
@@ -573,13 +550,11 @@
         "hair_colors": "none",
         "homeworld": 50,
         "average_lifespan": "unknown",
-        "average_height": "190"
+        "average_height": "190",
+        "model": "resources.species",
+        "pk": 27
     },
-    "model": "resources.species",
-    "pk": 27
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:36:42.195Z",
         "classification": "insectoid",
         "name": "Geonosian",
@@ -594,13 +569,11 @@
         "hair_colors": "none",
         "homeworld": 11,
         "average_lifespan": "unknown",
-        "average_height": "178"
+        "average_height": "178",
+        "model": "resources.species",
+        "pk": 28
     },
-    "model": "resources.species",
-    "pk": 28
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:36:42.197Z",
         "classification": "mammal",
         "name": "Mirialan",
@@ -616,13 +589,11 @@
         "hair_colors": "black, brown",
         "homeworld": 51,
         "average_lifespan": "unknown",
-        "average_height": "180"
+        "average_height": "180",
+        "model": "resources.species",
+        "pk": 29
     },
-    "model": "resources.species",
-    "pk": 29
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:36:42.199Z",
         "classification": "reptilian",
         "name": "Clawdite",
@@ -637,13 +608,11 @@
         "hair_colors": "none",
         "homeworld": 54,
         "average_lifespan": "70",
-        "average_height": "180"
+        "average_height": "180",
+        "model": "resources.species",
+        "pk": 30
     },
-    "model": "resources.species",
-    "pk": 30
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:36:42.200Z",
         "classification": "amphibian",
         "name": "Besalisk",
@@ -658,13 +627,11 @@
         "hair_colors": "none",
         "homeworld": 55,
         "average_lifespan": "75",
-        "average_height": "178"
+        "average_height": "178",
+        "model": "resources.species",
+        "pk": 31
     },
-    "model": "resources.species",
-    "pk": 31
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:36:42.202Z",
         "classification": "amphibian",
         "name": "Kaminoan",
@@ -680,13 +647,11 @@
         "hair_colors": "none",
         "homeworld": 10,
         "average_lifespan": "80",
-        "average_height": "220"
+        "average_height": "220",
+        "model": "resources.species",
+        "pk": 32
     },
-    "model": "resources.species",
-    "pk": 32
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:36:42.204Z",
         "classification": "mammal",
         "name": "Skakoan",
@@ -701,13 +666,11 @@
         "hair_colors": "none",
         "homeworld": 56,
         "average_lifespan": "unknown",
-        "average_height": "unknown"
+        "average_height": "unknown",
+        "model": "resources.species",
+        "pk": 33
     },
-    "model": "resources.species",
-    "pk": 33
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:36:42.207Z",
         "classification": "mammal",
         "name": "Muun",
@@ -722,13 +685,11 @@
         "hair_colors": "none",
         "homeworld": 57,
         "average_lifespan": "100",
-        "average_height": "190"
+        "average_height": "190",
+        "model": "resources.species",
+        "pk": 34
     },
-    "model": "resources.species",
-    "pk": 34
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:36:42.209Z",
         "classification": "mammal",
         "name": "Togruta",
@@ -743,13 +704,11 @@
         "hair_colors": "none",
         "homeworld": 58,
         "average_lifespan": "94",
-        "average_height": "180"
+        "average_height": "180",
+        "model": "resources.species",
+        "pk": 35
     },
-    "model": "resources.species",
-    "pk": 35
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:36:42.210Z",
         "classification": "reptile",
         "name": "Kaleesh",
@@ -764,13 +723,11 @@
         "hair_colors": "none",
         "homeworld": 59,
         "average_lifespan": "80",
-        "average_height": "170"
+        "average_height": "170",
+        "model": "resources.species",
+        "pk": 36
     },
-    "model": "resources.species",
-    "pk": 36
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:36:42.212Z",
         "classification": "mammal",
         "name": "Pau'an",
@@ -785,9 +742,8 @@
         "hair_colors": "none",
         "homeworld": 12,
         "average_lifespan": "700",
-        "average_height": "190"
-    },
-    "model": "resources.species",
-    "pk": 37
-}
+        "average_height": "190",
+        "model": "resources.species",
+        "pk": 37
+    }
 ]

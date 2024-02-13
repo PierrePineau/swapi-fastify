@@ -1,6 +1,5 @@
 [
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:23:49.867Z",
         "consumables": "1 year",
         "name": "CR90 corvette",
@@ -10,15 +9,12 @@
         "max_atmosphering_speed": "950",
         "crew": "30-165",
         "length": "150",
-        "model": "CR90 corvette",
+        "model": "resources.transport",
         "cost_in_credits": "3500000",
-        "manufacturer": "Corellian Engineering Corporation"
+        "manufacturer": "Corellian Engineering Corporation",
+        "pk": 2
     },
-    "model": "resources.transport",
-    "pk": 2
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:23:49.870Z",
         "consumables": "2 years",
         "name": "Star Destroyer",
@@ -28,15 +24,12 @@
         "max_atmosphering_speed": "975",
         "crew": "47,060",
         "length": "1,600",
-        "model": "Imperial I-class Star Destroyer",
+        "model": "resources.transport",
         "cost_in_credits": "150000000",
-        "manufacturer": "Kuat Drive Yards"
+        "manufacturer": "Kuat Drive Yards",
+        "pk": 3
     },
-    "model": "resources.transport",
-    "pk": 3
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:30:21.661Z",
         "consumables": "2 months",
         "name": "Sand Crawler",
@@ -46,15 +39,12 @@
         "max_atmosphering_speed": "30",
         "crew": "46",
         "length": "36.8 ",
-        "model": "Digger Crawler",
+        "model": "resources.transport",
         "cost_in_credits": "150000",
-        "manufacturer": "Corellia Mining Corporation"
+        "manufacturer": "Corellia Mining Corporation",
+        "pk": 4
     },
-    "model": "resources.transport",
-    "pk": 4
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:23:49.873Z",
         "consumables": "1 month",
         "name": "Sentinel-class landing craft",
@@ -64,15 +54,12 @@
         "max_atmosphering_speed": "1000",
         "crew": "5",
         "length": "38",
-        "model": "Sentinel-class landing craft",
+        "model": "resources.transport",
         "cost_in_credits": "240000",
-        "manufacturer": "Sienar Fleet Systems, Cyngus Spaceworks"
+        "manufacturer": "Sienar Fleet Systems, Cyngus Spaceworks",
+        "pk": 5
     },
-    "model": "resources.transport",
-    "pk": 5
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:30:21.665Z",
         "consumables": "0",
         "name": "T-16 skyhopper",
@@ -82,15 +69,12 @@
         "max_atmosphering_speed": "1200",
         "crew": "1",
         "length": "10.4 ",
-        "model": "T-16 skyhopper",
+        "model": "resources.transport",
         "cost_in_credits": "14500",
-        "manufacturer": "Incom Corporation"
+        "manufacturer": "Incom Corporation",
+        "pk": 6
     },
-    "model": "resources.transport",
-    "pk": 6
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:30:21.668Z",
         "consumables": "unknown",
         "name": "X-34 landspeeder",
@@ -100,15 +84,12 @@
         "max_atmosphering_speed": "250",
         "crew": "1",
         "length": "3.4 ",
-        "model": "X-34 landspeeder",
+        "model": "resources.transport",
         "cost_in_credits": "10550",
-        "manufacturer": "SoroSuub Corporation"
+        "manufacturer": "SoroSuub Corporation",
+        "pk": 7
     },
-    "model": "resources.transport",
-    "pk": 7
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:30:21.670Z",
         "consumables": "2 days",
         "name": "TIE/LN starfighter",
@@ -118,15 +99,12 @@
         "max_atmosphering_speed": "1200",
         "crew": "1",
         "length": "6.4",
-        "model": "Twin Ion Engine/Ln Starfighter",
+        "model": "resources.transport",
         "cost_in_credits": "unknown",
-        "manufacturer": "Sienar Fleet Systems"
+        "manufacturer": "Sienar Fleet Systems",
+        "pk": 8
     },
-    "model": "resources.transport",
-    "pk": 8
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:26:24.783Z",
         "consumables": "3 years",
         "name": "Death Star",
@@ -136,15 +114,12 @@
         "max_atmosphering_speed": "n/a",
         "crew": "342,953",
         "length": "120000",
-        "model": "DS-1 Orbital Battle Station",
+        "model": "resources.transport",
         "cost_in_credits": "1000000000000",
-        "manufacturer": "Imperial Department of Military Research, Sienar Fleet Systems"
+        "manufacturer": "Imperial Department of Military Research, Sienar Fleet Systems",
+        "pk": 9
     },
-    "model": "resources.transport",
-    "pk": 9
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:23:49.880Z",
         "consumables": "2 months",
         "name": "Millennium Falcon",
@@ -154,15 +129,12 @@
         "max_atmosphering_speed": "1050",
         "crew": "4",
         "length": "34.37",
-        "model": "YT-1300 light freighter",
+        "model": "resources.transport",
         "cost_in_credits": "100000",
-        "manufacturer": "Corellian Engineering Corporation"
+        "manufacturer": "Corellian Engineering Corporation",
+        "pk": 10
     },
-    "model": "resources.transport",
-    "pk": 10
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:23:49.883Z",
         "consumables": "1 week",
         "name": "Y-wing",
@@ -172,15 +144,12 @@
         "max_atmosphering_speed": "1000km",
         "crew": "2",
         "length": "14",
-        "model": "BTL Y-wing",
+        "model": "resources.transport",
         "cost_in_credits": "134999",
-        "manufacturer": "Koensayr Manufacturing"
+        "manufacturer": "Koensayr Manufacturing",
+        "pk": 11
     },
-    "model": "resources.transport",
-    "pk": 11
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:23:49.886Z",
         "consumables": "1 week",
         "name": "X-wing",
@@ -190,15 +159,12 @@
         "max_atmosphering_speed": "1050",
         "crew": "1",
         "length": "12.5",
-        "model": "T-65 X-wing",
+        "model": "resources.transport",
         "cost_in_credits": "149999",
-        "manufacturer": "Incom Corporation"
+        "manufacturer": "Incom Corporation",
+        "pk": 12
     },
-    "model": "resources.transport",
-    "pk": 12
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:23:49.889Z",
         "consumables": "5 days",
         "name": "TIE Advanced x1",
@@ -208,15 +174,12 @@
         "max_atmosphering_speed": "1200",
         "crew": "1",
         "length": "9.2",
-        "model": "Twin Ion Engine Advanced x1",
+        "model": "resources.transport",
         "cost_in_credits": "unknown",
-        "manufacturer": "Sienar Fleet Systems"
+        "manufacturer": "Sienar Fleet Systems",
+        "pk": 13
     },
-    "model": "resources.transport",
-    "pk": 13
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:30:21.672Z",
         "consumables": "none",
         "name": "Snowspeeder",
@@ -226,15 +189,12 @@
         "max_atmosphering_speed": "650",
         "crew": "2",
         "length": "4.5",
-        "model": "t-47 airspeeder",
+        "model": "resources.transport",
         "cost_in_credits": "unknown",
-        "manufacturer": "Incom corporation"
+        "manufacturer": "Incom corporation",
+        "pk": 14
     },
-    "model": "resources.transport",
-    "pk": 14
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:23:49.893Z",
         "consumables": "6 years",
         "name": "Executor",
@@ -244,15 +204,12 @@
         "max_atmosphering_speed": "n/a",
         "crew": "279,144",
         "length": "19000",
-        "model": "Executor-class star dreadnought",
+        "model": "resources.transport",
         "cost_in_credits": "1143350000",
-        "manufacturer": "Kuat Drive Yards, Fondor Shipyards"
+        "manufacturer": "Kuat Drive Yards, Fondor Shipyards",
+        "pk": 15
     },
-    "model": "resources.transport",
-    "pk": 15
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:30:21.675Z",
         "consumables": "2 days",
         "name": "TIE bomber",
@@ -262,15 +219,12 @@
         "max_atmosphering_speed": "850",
         "crew": "1",
         "length": "7.8",
-        "model": "TIE/sa bomber",
+        "model": "resources.transport",
         "cost_in_credits": "unknown",
-        "manufacturer": "Sienar Fleet Systems"
+        "manufacturer": "Sienar Fleet Systems",
+        "pk": 16
     },
-    "model": "resources.transport",
-    "pk": 16
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:23:49.895Z",
         "consumables": "6 months",
         "name": "Rebel transport",
@@ -280,15 +234,12 @@
         "max_atmosphering_speed": "650",
         "crew": "6",
         "length": "90",
-        "model": "GR-75 medium transport",
+        "model": "resources.transport",
         "cost_in_credits": "unknown",
-        "manufacturer": "Gallofree Yards, Inc."
+        "manufacturer": "Gallofree Yards, Inc.",
+        "pk": 17
     },
-    "model": "resources.transport",
-    "pk": 17
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:30:21.677Z",
         "consumables": "unknown",
         "name": "AT-AT",
@@ -298,15 +249,12 @@
         "max_atmosphering_speed": "60",
         "crew": "5",
         "length": "20",
-        "model": "All Terrain Armored Transport",
+        "model": "resources.transport",
         "cost_in_credits": "unknown",
-        "manufacturer": "Kuat Drive Yards, Imperial Department of Military Research"
+        "manufacturer": "Kuat Drive Yards, Imperial Department of Military Research",
+        "pk": 18
     },
-    "model": "resources.transport",
-    "pk": 18
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:30:21.679Z",
         "consumables": "none",
         "name": "AT-ST",
@@ -316,15 +264,12 @@
         "max_atmosphering_speed": "90",
         "crew": "2",
         "length": "2",
-        "model": "All Terrain Scout Transport",
+        "model": "resources.transport",
         "cost_in_credits": "unknown",
-        "manufacturer": "Kuat Drive Yards, Imperial Department of Military Research"
+        "manufacturer": "Kuat Drive Yards, Imperial Department of Military Research",
+        "pk": 19
     },
-    "model": "resources.transport",
-    "pk": 19
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:30:21.681Z",
         "consumables": "1 day",
         "name": "Storm IV Twin-Pod cloud car",
@@ -334,15 +279,12 @@
         "max_atmosphering_speed": "1500",
         "crew": "2",
         "length": "7",
-        "model": "Storm IV Twin-Pod",
+        "model": "resources.transport",
         "cost_in_credits": "75000",
-        "manufacturer": "Bespin Motors"
+        "manufacturer": "Bespin Motors",
+        "pk": 20
     },
-    "model": "resources.transport",
-    "pk": 20
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:23:49.897Z",
         "consumables": "1 month",
         "name": "Slave 1",
@@ -352,15 +294,12 @@
         "max_atmosphering_speed": "1000",
         "crew": "1",
         "length": "21.5",
-        "model": "Firespray-31-class patrol and attack",
+        "model": "resources.transport",
         "cost_in_credits": "unknown",
-        "manufacturer": "Kuat Systems Engineering"
+        "manufacturer": "Kuat Systems Engineering",
+        "pk": 21
     },
-    "model": "resources.transport",
-    "pk": 21
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:23:49.900Z",
         "consumables": "2 months",
         "name": "Imperial shuttle",
@@ -370,15 +309,12 @@
         "max_atmosphering_speed": "850",
         "crew": "6",
         "length": "20",
-        "model": "Lambda-class T-4a shuttle",
+        "model": "resources.transport",
         "cost_in_credits": "240000",
-        "manufacturer": "Sienar Fleet Systems"
+        "manufacturer": "Sienar Fleet Systems",
+        "pk": 22
     },
-    "model": "resources.transport",
-    "pk": 22
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:23:49.902Z",
         "consumables": "2 years",
         "name": "EF76 Nebulon-B escort frigate",
@@ -388,15 +324,12 @@
         "max_atmosphering_speed": "800",
         "crew": "854",
         "length": "300",
-        "model": "EF76 Nebulon-B escort frigate",
+        "model": "resources.transport",
         "cost_in_credits": "8500000",
-        "manufacturer": "Kuat Drive Yards"
+        "manufacturer": "Kuat Drive Yards",
+        "pk": 23
     },
-    "model": "resources.transport",
-    "pk": 23
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:30:21.684Z",
         "consumables": "Live food tanks",
         "name": "Sail barge",
@@ -406,15 +339,12 @@
         "max_atmosphering_speed": "100",
         "crew": "26",
         "length": "30",
-        "model": "Modified Luxury Sail Barge",
+        "model": "resources.transport",
         "cost_in_credits": "285000",
-        "manufacturer": "Ubrikkian Industries Custom Vehicle Division"
+        "manufacturer": "Ubrikkian Industries Custom Vehicle Division",
+        "pk": 24
     },
-    "model": "resources.transport",
-    "pk": 24
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:30:21.688Z",
         "consumables": "1 day",
         "name": "Bantha-II cargo skiff",
@@ -424,15 +354,12 @@
         "max_atmosphering_speed": "250",
         "crew": "5",
         "length": "9.5",
-        "model": "Bantha-II",
+        "model": "resources.transport",
         "cost_in_credits": "8000",
-        "manufacturer": "Ubrikkian Industries"
+        "manufacturer": "Ubrikkian Industries",
+        "pk": 25
     },
-    "model": "resources.transport",
-    "pk": 25
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:30:21.691Z",
         "consumables": "2 days",
         "name": "TIE/IN interceptor",
@@ -442,15 +369,12 @@
         "max_atmosphering_speed": "1250",
         "crew": "1",
         "length": "9.6",
-        "model": "Twin Ion Engine Interceptor",
+        "model": "resources.transport",
         "cost_in_credits": "unknown",
-        "manufacturer": "Sienar Fleet Systems"
+        "manufacturer": "Sienar Fleet Systems",
+        "pk": 26
     },
-    "model": "resources.transport",
-    "pk": 26
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:23:49.904Z",
         "consumables": "2 years",
         "name": "Calamari Cruiser",
@@ -460,15 +384,12 @@
         "max_atmosphering_speed": "n/a",
         "crew": "5400",
         "length": "1200",
-        "model": "MC80 Liberty type Star Cruiser",
+        "model": "resources.transport",
         "cost_in_credits": "104000000",
-        "manufacturer": "Mon Calamari shipyards"
+        "manufacturer": "Mon Calamari shipyards",
+        "pk": 27
     },
-    "model": "resources.transport",
-    "pk": 27
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:23:49.907Z",
         "consumables": "1 week",
         "name": "A-wing",
@@ -478,15 +399,12 @@
         "max_atmosphering_speed": "1300",
         "crew": "1",
         "length": "9.6",
-        "model": "RZ-1 A-wing Interceptor",
+        "model": "resources.transport",
         "cost_in_credits": "175000",
-        "manufacturer": "Alliance Underground Engineering, Incom Corporation"
+        "manufacturer": "Alliance Underground Engineering, Incom Corporation",
+        "pk": 28
     },
-    "model": "resources.transport",
-    "pk": 28
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:23:49.909Z",
         "consumables": "1 week",
         "name": "B-wing",
@@ -496,15 +414,12 @@
         "max_atmosphering_speed": "950",
         "crew": "1",
         "length": "16.9",
-        "model": "A/SF-01 B-wing starfighter",
+        "model": "resources.transport",
         "cost_in_credits": "220000",
-        "manufacturer": "Slayn & Korpil"
+        "manufacturer": "Slayn & Korpil",
+        "pk": 29
     },
-    "model": "resources.transport",
-    "pk": 29
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:30:21.693Z",
         "consumables": "1 day",
         "name": "Imperial Speeder Bike",
@@ -514,15 +429,12 @@
         "max_atmosphering_speed": "360",
         "crew": "1",
         "length": "3",
-        "model": "74-Z speeder bike",
+        "model": "resources.transport",
         "cost_in_credits": "8000",
-        "manufacturer": "Aratech Repulsor Company"
+        "manufacturer": "Aratech Repulsor Company",
+        "pk": 30
     },
-    "model": "resources.transport",
-    "pk": 30
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:23:49.912Z",
         "consumables": "unknown",
         "name": "Republic Cruiser",
@@ -532,15 +444,12 @@
         "max_atmosphering_speed": "900",
         "crew": "9",
         "length": "115",
-        "model": "Consular-class cruiser",
+        "model": "resources.transport",
         "cost_in_credits": "unknown",
-        "manufacturer": "Corellian Engineering Corporation"
+        "manufacturer": "Corellian Engineering Corporation",
+        "pk": 31
     },
-    "model": "resources.transport",
-    "pk": 31
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:23:49.915Z",
         "consumables": "500 days",
         "name": "Droid control ship",
@@ -550,15 +459,12 @@
         "max_atmosphering_speed": "n/a",
         "crew": "175",
         "length": "3170",
-        "model": "Lucrehulk-class Droid Control Ship",
+        "model": "resources.transport",
         "cost_in_credits": "unknown",
-        "manufacturer": "Hoersch-Kessel Drive, Inc."
+        "manufacturer": "Hoersch-Kessel Drive, Inc.",
+        "pk": 32
     },
-    "model": "resources.transport",
-    "pk": 32
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:30:21.697Z",
         "consumables": "none",
         "name": "Vulture Droid",
@@ -568,15 +474,12 @@
         "max_atmosphering_speed": "1200",
         "crew": "0",
         "length": "3.5",
-        "model": "Vulture-class droid starfighter",
+        "model": "resources.transport",
         "cost_in_credits": "unknown",
-        "manufacturer": "Haor Chall Engineering, Baktoid Armor Workshop"
+        "manufacturer": "Haor Chall Engineering, Baktoid Armor Workshop",
+        "pk": 33
     },
-    "model": "resources.transport",
-    "pk": 33
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:30:21.700Z",
         "consumables": "unknown",
         "name": "Multi-Troop Transport",
@@ -586,15 +489,12 @@
         "max_atmosphering_speed": "35",
         "crew": "4",
         "length": "31",
-        "model": "Multi-Troop Transport",
+        "model": "resources.transport",
         "cost_in_credits": "138000",
-        "manufacturer": "Baktoid Armor Workshop"
+        "manufacturer": "Baktoid Armor Workshop",
+        "pk": 34
     },
-    "model": "resources.transport",
-    "pk": 34
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:30:21.703Z",
         "consumables": "unknown",
         "name": "Armored Assault Tank",
@@ -604,15 +504,12 @@
         "max_atmosphering_speed": "55",
         "crew": "4",
         "length": "9.75",
-        "model": "Armoured Assault Tank",
+        "model": "resources.transport",
         "cost_in_credits": "unknown",
-        "manufacturer": "Baktoid Armor Workshop"
+        "manufacturer": "Baktoid Armor Workshop",
+        "pk": 35
     },
-    "model": "resources.transport",
-    "pk": 35
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:30:21.705Z",
         "consumables": "none",
         "name": "Single Trooper Aerial Platform",
@@ -622,15 +519,12 @@
         "max_atmosphering_speed": "400",
         "crew": "1",
         "length": "2",
-        "model": "Single Trooper Aerial Platform",
+        "model": "resources.transport",
         "cost_in_credits": "2500",
-        "manufacturer": "Baktoid Armor Workshop"
+        "manufacturer": "Baktoid Armor Workshop",
+        "pk": 36
     },
-    "model": "resources.transport",
-    "pk": 36
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:30:21.707Z",
         "consumables": "1 day",
         "name": "C-9979 landing craft",
@@ -640,15 +534,12 @@
         "max_atmosphering_speed": "587",
         "crew": "140",
         "length": "210",
-        "model": "C-9979 landing craft",
+        "model": "resources.transport",
         "cost_in_credits": "200000",
-        "manufacturer": "Haor Chall Engineering"
+        "manufacturer": "Haor Chall Engineering",
+        "pk": 37
     },
-    "model": "resources.transport",
-    "pk": 37
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:30:21.710Z",
         "consumables": "unknown",
         "name": "Tribubble bongo",
@@ -658,15 +549,12 @@
         "max_atmosphering_speed": "85",
         "crew": "1",
         "length": "15",
-        "model": "Tribubble bongo",
+        "model": "resources.transport",
         "cost_in_credits": "unknown",
-        "manufacturer": "Otoh Gunga Bongameken Cooperative"
+        "manufacturer": "Otoh Gunga Bongameken Cooperative",
+        "pk": 38
     },
-    "model": "resources.transport",
-    "pk": 38
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:23:49.917Z",
         "consumables": "7 days",
         "name": "Naboo fighter",
@@ -676,15 +564,12 @@
         "max_atmosphering_speed": "1100",
         "crew": "1",
         "length": "11",
-        "model": "N-1 starfighter",
+        "model": "resources.transport",
         "cost_in_credits": "200000",
-        "manufacturer": "Theed Palace Space Vessel Engineering Corps"
+        "manufacturer": "Theed Palace Space Vessel Engineering Corps",
+        "pk": 39
     },
-    "model": "resources.transport",
-    "pk": 39
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:23:49.919Z",
         "consumables": "unknown",
         "name": "Naboo Royal Starship",
@@ -694,15 +579,12 @@
         "max_atmosphering_speed": "920",
         "crew": "8",
         "length": "76",
-        "model": "J-type 327 Nubian royal starship",
+        "model": "resources.transport",
         "cost_in_credits": "unknown",
-        "manufacturer": "Theed Palace Space Vessel Engineering Corps, Nubia Star Drives"
+        "manufacturer": "Theed Palace Space Vessel Engineering Corps, Nubia Star Drives",
+        "pk": 40
     },
-    "model": "resources.transport",
-    "pk": 40
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:23:49.922Z",
         "consumables": "30 days",
         "name": "Scimitar",
@@ -712,15 +594,12 @@
         "max_atmosphering_speed": "1180",
         "crew": "1",
         "length": "26.5",
-        "model": "Star Courier",
+        "model": "resources.transport",
         "cost_in_credits": "55000000",
-        "manufacturer": "Republic Sienar Systems"
+        "manufacturer": "Republic Sienar Systems",
+        "pk": 41
     },
-    "model": "resources.transport",
-    "pk": 41
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:30:21.712Z",
         "consumables": "unknown",
         "name": "Sith speeder",
@@ -730,15 +609,12 @@
         "max_atmosphering_speed": "180",
         "crew": "1",
         "length": "1.5",
-        "model": "FC-20 speeder bike",
+        "model": "resources.transport",
         "cost_in_credits": "4000",
-        "manufacturer": "Razalon"
+        "manufacturer": "Razalon",
+        "pk": 42
     },
-    "model": "resources.transport",
-    "pk": 42
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:23:49.925Z",
         "consumables": "1 year",
         "name": "J-type diplomatic barge",
@@ -748,15 +624,12 @@
         "max_atmosphering_speed": "2000",
         "crew": "5",
         "length": "39",
-        "model": "J-type diplomatic barge",
+        "model": "resources.transport",
         "cost_in_credits": "2000000",
-        "manufacturer": "Theed Palace Space Vessel Engineering Corps, Nubia Star Drives"
+        "manufacturer": "Theed Palace Space Vessel Engineering Corps, Nubia Star Drives",
+        "pk": 43
     },
-    "model": "resources.transport",
-    "pk": 43
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:30:21.714Z",
         "consumables": "none",
         "name": "Zephyr-G swoop bike",
@@ -766,15 +639,12 @@
         "max_atmosphering_speed": "350",
         "crew": "1",
         "length": "3.68",
-        "model": "Zephyr-G swoop bike",
+        "model": "resources.transport",
         "cost_in_credits": "5750",
-        "manufacturer": "Mobquet Swoops and Speeders"
+        "manufacturer": "Mobquet Swoops and Speeders",
+        "pk": 44
     },
-    "model": "resources.transport",
-    "pk": 44
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:30:21.716Z",
         "consumables": "unknown",
         "name": "Koro-2 Exodrive airspeeder",
@@ -784,15 +654,12 @@
         "max_atmosphering_speed": "800",
         "crew": "1",
         "length": "6.6",
-        "model": "Koro-2 Exodrive airspeeder",
+        "model": "resources.transport",
         "cost_in_credits": "unknown",
-        "manufacturer": "Desler Gizh Outworld Mobility Corporation"
+        "manufacturer": "Desler Gizh Outworld Mobility Corporation",
+        "pk": 45
     },
-    "model": "resources.transport",
-    "pk": 45
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:30:21.719Z",
         "consumables": "unknown",
         "name": "XJ-6 airspeeder",
@@ -802,15 +669,12 @@
         "max_atmosphering_speed": "720",
         "crew": "1",
         "length": "6.23",
-        "model": "XJ-6 airspeeder",
+        "model": "resources.transport",
         "cost_in_credits": "unknown",
-        "manufacturer": "Narglatch AirTech prefabricated kit"
+        "manufacturer": "Narglatch AirTech prefabricated kit",
+        "pk": 46
     },
-    "model": "resources.transport",
-    "pk": 46
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:23:49.928Z",
         "consumables": "unknown",
         "name": "AA-9 Coruscant freighter",
@@ -820,15 +684,12 @@
         "max_atmosphering_speed": "unknown",
         "crew": "unknown",
         "length": "390",
-        "model": "Botajef AA-9 Freighter-Liner",
+        "model": "resources.transport",
         "cost_in_credits": "unknown",
-        "manufacturer": "Botajef Shipyards"
+        "manufacturer": "Botajef Shipyards",
+        "pk": 47
     },
-    "model": "resources.transport",
-    "pk": 47
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:23:49.930Z",
         "consumables": "7 days",
         "name": "Jedi starfighter",
@@ -838,15 +699,12 @@
         "max_atmosphering_speed": "1150",
         "crew": "1",
         "length": "8",
-        "model": "Delta-7 Aethersprite-class interceptor",
+        "model": "resources.transport",
         "cost_in_credits": "180000",
-        "manufacturer": "Kuat Systems Engineering"
+        "manufacturer": "Kuat Systems Engineering",
+        "pk": 48
     },
-    "model": "resources.transport",
-    "pk": 48
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:23:49.932Z",
         "consumables": "unknown",
         "name": "H-type Nubian yacht",
@@ -856,15 +714,12 @@
         "max_atmosphering_speed": "8000",
         "crew": "4",
         "length": "47.9",
-        "model": "H-type Nubian yacht",
+        "model": "resources.transport",
         "cost_in_credits": "unknown",
-        "manufacturer": "Theed Palace Space Vessel Engineering Corps"
+        "manufacturer": "Theed Palace Space Vessel Engineering Corps",
+        "pk": 49
     },
-    "model": "resources.transport",
-    "pk": 49
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:30:21.723Z",
         "consumables": "unknown",
         "name": "LAAT/i",
@@ -874,15 +729,12 @@
         "max_atmosphering_speed": "620",
         "crew": "6",
         "length": "17.4",
-        "model": "Low Altitude Assault Transport/infrantry",
+        "model": "resources.transport",
         "cost_in_credits": "unknown",
-        "manufacturer": "Rothana Heavy Engineering"
+        "manufacturer": "Rothana Heavy Engineering",
+        "pk": 50
     },
-    "model": "resources.transport",
-    "pk": 50
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:30:21.725Z",
         "consumables": "unknown",
         "name": "LAAT/c",
@@ -892,15 +744,12 @@
         "max_atmosphering_speed": "620",
         "crew": "1",
         "length": "28.82",
-        "model": "Low Altitude Assault Transport/carrier",
+        "model": "resources.transport",
         "cost_in_credits": "unknown",
-        "manufacturer": "Rothana Heavy Engineering"
+        "manufacturer": "Rothana Heavy Engineering",
+        "pk": 51
     },
-    "model": "resources.transport",
-    "pk": 51
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:23:49.935Z",
         "consumables": "2 years",
         "name": "Republic Assault ship",
@@ -910,15 +759,12 @@
         "max_atmosphering_speed": "unknown",
         "crew": "700",
         "length": "752",
-        "model": "Acclamator I-class assault ship",
+        "model": "resources.transport",
         "cost_in_credits": "unknown",
-        "manufacturer": "Rothana Heavy Engineering"
+        "manufacturer": "Rothana Heavy Engineering",
+        "pk": 52
     },
-    "model": "resources.transport",
-    "pk": 52
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:30:21.728Z",
         "consumables": "21 days",
         "name": "AT-TE",
@@ -928,15 +774,12 @@
         "max_atmosphering_speed": "60",
         "crew": "6",
         "length": "13.2",
-        "model": "All Terrain Tactical Enforcer",
+        "model": "resources.transport",
         "cost_in_credits": "unknown",
-        "manufacturer": "Rothana Heavy Engineering, Kuat Drive Yards"
+        "manufacturer": "Rothana Heavy Engineering, Kuat Drive Yards",
+        "pk": 53
     },
-    "model": "resources.transport",
-    "pk": 53
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:30:21.731Z",
         "consumables": "7 days",
         "name": "SPHA",
@@ -946,15 +789,12 @@
         "max_atmosphering_speed": "35",
         "crew": "25",
         "length": "140",
-        "model": "Self-Propelled Heavy Artillery",
+        "model": "resources.transport",
         "cost_in_credits": "unknown",
-        "manufacturer": "Rothana Heavy Engineering"
+        "manufacturer": "Rothana Heavy Engineering",
+        "pk": 54
     },
-    "model": "resources.transport",
-    "pk": 54
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:30:21.735Z",
         "consumables": "unknown",
         "name": "Flitknot speeder",
@@ -964,15 +804,12 @@
         "max_atmosphering_speed": "634",
         "crew": "1",
         "length": "2",
-        "model": "Flitknot speeder",
+        "model": "resources.transport",
         "cost_in_credits": "8000",
-        "manufacturer": "Huppla Pasa Tisc Shipwrights Collective"
+        "manufacturer": "Huppla Pasa Tisc Shipwrights Collective",
+        "pk": 55
     },
-    "model": "resources.transport",
-    "pk": 55
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:30:21.739Z",
         "consumables": "7 days",
         "name": "Neimoidian shuttle",
@@ -982,15 +819,12 @@
         "max_atmosphering_speed": "880",
         "crew": "2",
         "length": "20",
-        "model": "Sheathipede-class transport shuttle",
+        "model": "resources.transport",
         "cost_in_credits": "unknown",
-        "manufacturer": "Haor Chall Engineering"
+        "manufacturer": "Haor Chall Engineering",
+        "pk": 56
     },
-    "model": "resources.transport",
-    "pk": 56
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:30:21.742Z",
         "consumables": "unknown",
         "name": "Geonosian starfighter",
@@ -1000,15 +834,12 @@
         "max_atmosphering_speed": "20000",
         "crew": "1",
         "length": "9.8",
-        "model": "Nantex-class territorial defense",
+        "model": "resources.transport",
         "cost_in_credits": "unknown",
-        "manufacturer": "Huppla Pasa Tisc Shipwrights Collective"
+        "manufacturer": "Huppla Pasa Tisc Shipwrights Collective",
+        "pk": 57
     },
-    "model": "resources.transport",
-    "pk": 57
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:23:49.937Z",
         "consumables": "7 days",
         "name": "Solar Sailer",
@@ -1018,15 +849,12 @@
         "max_atmosphering_speed": "1600",
         "crew": "3",
         "length": "15.2",
-        "model": "Punworcca 116-class interstellar sloop",
+        "model": "resources.transport",
         "cost_in_credits": "35700",
-        "manufacturer": "Huppla Pasa Tisc Shipwrights Collective"
+        "manufacturer": "Huppla Pasa Tisc Shipwrights Collective",
+        "pk": 58
     },
-    "model": "resources.transport",
-    "pk": 58
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:23:49.941Z",
         "consumables": "4 years",
         "name": "Trade Federation cruiser",
@@ -1036,15 +864,12 @@
         "max_atmosphering_speed": "1050",
         "crew": "600",
         "length": "1088",
-        "model": "Providence-class carrier/destroyer",
+        "model": "resources.transport",
         "cost_in_credits": "125000000",
-        "manufacturer": "Rendili StarDrive, Free Dac Volunteers Engineering corps."
+        "manufacturer": "Rendili StarDrive, Free Dac Volunteers Engineering corps.",
+        "pk": 59
     },
-    "model": "resources.transport",
-    "pk": 59
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:30:21.745Z",
         "consumables": "none",
         "name": "Tsmeu-6 personal wheel bike",
@@ -1054,15 +879,12 @@
         "max_atmosphering_speed": "330",
         "crew": "1",
         "length": "3.5",
-        "model": "Tsmeu-6 personal wheel bike",
+        "model": "resources.transport",
         "cost_in_credits": "15000",
-        "manufacturer": "Z-Gomot Ternbuell Guppat Corporation"
+        "manufacturer": "Z-Gomot Ternbuell Guppat Corporation",
+        "pk": 60
     },
-    "model": "resources.transport",
-    "pk": 60
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:23:49.944Z",
         "consumables": "56 days",
         "name": "Theta-class T-2c shuttle",
@@ -1072,15 +894,12 @@
         "max_atmosphering_speed": "2000",
         "crew": "5",
         "length": "18.5",
-        "model": "Theta-class T-2c shuttle",
+        "model": "resources.transport",
         "cost_in_credits": "1000000",
-        "manufacturer": "Cygnus Spaceworks"
+        "manufacturer": "Cygnus Spaceworks",
+        "pk": 61
     },
-    "model": "resources.transport",
-    "pk": 61
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:30:21.749Z",
         "consumables": "unknown",
         "name": "Emergency Firespeeder",
@@ -1090,15 +909,12 @@
         "max_atmosphering_speed": "unknown",
         "crew": "2",
         "length": "unknown",
-        "model": "Fire suppression speeder",
+        "model": "resources.transport",
         "cost_in_credits": "unknown",
-        "manufacturer": "unknown"
+        "manufacturer": "unknown",
+        "pk": 62
     },
-    "model": "resources.transport",
-    "pk": 62
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:23:49.946Z",
         "consumables": "2 years",
         "name": "Republic attack cruiser",
@@ -1108,15 +924,12 @@
         "max_atmosphering_speed": "975",
         "crew": "7400",
         "length": "1137",
-        "model": "Senator-class Star Destroyer",
+        "model": "resources.transport",
         "cost_in_credits": "59000000",
-        "manufacturer": "Kuat Drive Yards, Allanteen Six shipyards"
+        "manufacturer": "Kuat Drive Yards, Allanteen Six shipyards",
+        "pk": 63
     },
-    "model": "resources.transport",
-    "pk": 63
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:23:49.948Z",
         "consumables": "unknown",
         "name": "Naboo star skiff",
@@ -1126,15 +939,12 @@
         "max_atmosphering_speed": "1050",
         "crew": "3",
         "length": "29.2",
-        "model": "J-type star skiff",
+        "model": "resources.transport",
         "cost_in_credits": "unknown",
-        "manufacturer": "Theed Palace Space Vessel Engineering Corps/Nubia Star Drives, Incorporated"
+        "manufacturer": "Theed Palace Space Vessel Engineering Corps/Nubia Star Drives, Incorporated",
+        "pk": 64
     },
-    "model": "resources.transport",
-    "pk": 64
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:23:49.951Z",
         "consumables": "2 days",
         "name": "Jedi Interceptor",
@@ -1144,15 +954,12 @@
         "max_atmosphering_speed": "1500",
         "crew": "1",
         "length": "5.47",
-        "model": "Eta-2 Actis-class light interceptor",
+        "model": "resources.transport",
         "cost_in_credits": "320000",
-        "manufacturer": "Kuat Systems Engineering"
+        "manufacturer": "Kuat Systems Engineering",
+        "pk": 65
     },
-    "model": "resources.transport",
-    "pk": 65
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:23:49.953Z",
         "consumables": "5 days",
         "name": "arc-170",
@@ -1162,15 +969,12 @@
         "max_atmosphering_speed": "1000",
         "crew": "3",
         "length": "14.5",
-        "model": "Aggressive Reconnaissance-170 starfighte",
+        "model": "resources.transport",
         "cost_in_credits": "155000",
-        "manufacturer": "Incom Corporation, Subpro Corporation"
+        "manufacturer": "Incom Corporation, Subpro Corporation",
+        "pk": 66
     },
-    "model": "resources.transport",
-    "pk": 66
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:30:21.752Z",
         "consumables": "none",
         "name": "Droid tri-fighter",
@@ -1180,15 +984,12 @@
         "max_atmosphering_speed": "1180",
         "crew": "1",
         "length": "5.4",
-        "model": "tri-fighter",
+        "model": "resources.transport",
         "cost_in_credits": "20000",
-        "manufacturer": "Colla Designs, Phlac-Arphocc Automata Industries"
+        "manufacturer": "Colla Designs, Phlac-Arphocc Automata Industries",
+        "pk": 67
     },
-    "model": "resources.transport",
-    "pk": 67
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:23:49.956Z",
         "consumables": "2 years",
         "name": "Banking clan frigte",
@@ -1198,15 +999,12 @@
         "max_atmosphering_speed": "unknown",
         "crew": "200",
         "length": "825",
-        "model": "Munificent-class star frigate",
+        "model": "resources.transport",
         "cost_in_credits": "57000000",
-        "manufacturer": "Hoersch-Kessel Drive, Inc, Gwori Revolutionary Industries"
+        "manufacturer": "Hoersch-Kessel Drive, Inc, Gwori Revolutionary Industries",
+        "pk": 68
     },
-    "model": "resources.transport",
-    "pk": 68
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:30:21.756Z",
         "consumables": "3 days",
         "name": "Oevvaor jet catamaran",
@@ -1216,15 +1014,12 @@
         "max_atmosphering_speed": "420",
         "crew": "2",
         "length": "15.1",
-        "model": "Oevvaor jet catamaran",
+        "model": "resources.transport",
         "cost_in_credits": "12125",
-        "manufacturer": "Appazanna Engineering Works"
+        "manufacturer": "Appazanna Engineering Works",
+        "pk": 69
     },
-    "model": "resources.transport",
-    "pk": 69
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:30:21.759Z",
         "consumables": "none",
         "name": "Raddaugh Gnasp fluttercraft",
@@ -1234,15 +1029,12 @@
         "max_atmosphering_speed": "310",
         "crew": "2",
         "length": "7",
-        "model": "Raddaugh Gnasp fluttercraft",
+        "model": "resources.transport",
         "cost_in_credits": "14750",
-        "manufacturer": "Appazanna Engineering Works"
+        "manufacturer": "Appazanna Engineering Works",
+        "pk": 70
     },
-    "model": "resources.transport",
-    "pk": 70
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:30:21.762Z",
         "consumables": "20 days",
         "name": "Clone turbo tank",
@@ -1252,15 +1044,12 @@
         "max_atmosphering_speed": "160",
         "crew": "20",
         "length": "49.4",
-        "model": "HAVw A6 Juggernaut",
+        "model": "resources.transport",
         "cost_in_credits": "350000",
-        "manufacturer": "Kuat Drive Yards"
+        "manufacturer": "Kuat Drive Yards",
+        "pk": 71
     },
-    "model": "resources.transport",
-    "pk": 71
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:30:21.765Z",
         "consumables": "none",
         "name": "Corporate Alliance tank droid",
@@ -1270,15 +1059,12 @@
         "max_atmosphering_speed": "100",
         "crew": "0",
         "length": "10.96",
-        "model": "NR-N99 Persuader-class droid enforcer",
+        "model": "resources.transport",
         "cost_in_credits": "49000",
-        "manufacturer": "Techno Union"
+        "manufacturer": "Techno Union",
+        "pk": 72
     },
-    "model": "resources.transport",
-    "pk": 72
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:30:21.768Z",
         "consumables": "none",
         "name": "Droid gunship",
@@ -1288,15 +1074,12 @@
         "max_atmosphering_speed": "820",
         "crew": "0",
         "length": "12.3",
-        "model": "HMP droid gunship",
+        "model": "resources.transport",
         "cost_in_credits": "60000",
-        "manufacturer": "Baktoid Fleet Ordnance, Haor Chall Engineering"
+        "manufacturer": "Baktoid Fleet Ordnance, Haor Chall Engineering",
+        "pk": 73
     },
-    "model": "resources.transport",
-    "pk": 73
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:23:49.959Z",
         "consumables": "7 days",
         "name": "Belbullab-22 starfighter",
@@ -1306,15 +1089,12 @@
         "max_atmosphering_speed": "1100",
         "crew": "1",
         "length": "6.71",
-        "model": "Belbullab-22 starfighter",
+        "model": "resources.transport",
         "cost_in_credits": "168000",
-        "manufacturer": "Feethan Ottraw Scalable Assemblies"
+        "manufacturer": "Feethan Ottraw Scalable Assemblies",
+        "pk": 74
     },
-    "model": "resources.transport",
-    "pk": 74
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:23:49.961Z",
         "consumables": "15 hours",
         "name": "V-wing",
@@ -1324,15 +1104,12 @@
         "max_atmosphering_speed": "1050",
         "crew": "1",
         "length": "7.9",
-        "model": "Alpha-3 Nimbus-class V-wing starfighter",
+        "model": "resources.transport",
         "cost_in_credits": "102500",
-        "manufacturer": "Kuat Systems Engineering"
+        "manufacturer": "Kuat Systems Engineering",
+        "pk": 75
     },
-    "model": "resources.transport",
-    "pk": 75
-},
-{
-    "fields": {
+    {
         "edited": "2014-12-20T21:30:21.772Z",
         "consumables": "1 day",
         "name": "AT-RT",
@@ -1342,11 +1119,9 @@
         "max_atmosphering_speed": "90",
         "crew": "1",
         "length": "3.2",
-        "model": "All Terrain Recon Transport",
+        "model": "resources.transport",
         "cost_in_credits": "40000",
-        "manufacturer": "Kuat Drive Yards"
-    },
-    "model": "resources.transport",
-    "pk": 76
-}
+        "manufacturer": "Kuat Drive Yards",
+        "pk": 76
+    }
 ]

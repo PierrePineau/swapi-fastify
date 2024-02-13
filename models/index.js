@@ -41,7 +41,7 @@ const Planet = mongoose.model("Planet", planetSchema);
 // Modèle pour l'entité "Films"
 const filmSchema = new mongoose.Schema({
     title: { type: String, required: true},
-    episode_id: { type: Integer, required: true},
+    episode_id: { type: Number, required: true},
     director: { type: String, required: true},
     producer: { type: String, required: true},
     release_date: { type: Date, required: true},

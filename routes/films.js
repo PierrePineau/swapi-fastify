@@ -210,9 +210,67 @@ const routes = async (app) => {
             }
 		},
         async (request, reply) => {
-			const id = request.params.id
+            try {
+                const id = request.params.id
 
-			const film = await Film.findOne(
+                const film = await Film.findOneById(
+                    {
+                        _id: id
+                    },
+                )
+
+                // On vérifie si le film existe
+                if (!film) {
+                    return reply.status(404).send({
+                        message: "Not found"
+                    })
+                }
+
+                // On met à jour
+                await film.save();
+
+                return reply.send(film);
+            } catch (error) {
+                return reply.status(400).send({
+                    message: error.message
+                })
+            }
+		}
+	)
+
+	/**
+	 * DELETE ONE FILMS
+	 */
+	app.delete(
+        "/films/:id",
+        {
+            schema: {
+                description: "Update one film",
+                tags: tags,
+                summary: "Update one film",
+                body: {
+                    type: "object",
+                    properties: EntityPropertiesUpdate,
+                },
+                response: {
+                    200: {
+                        response: 200,
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    type: "object",
+                                    properties: EntityProperties,
+                                },
+                            },
+                        },
+                    },
+                },
+            }
+        },
+        async (request, reply) => {
+            const {id} = request.params
+
+            const film = await Film.findOne(
                 {
                     _id: id
                 }
@@ -223,34 +281,10 @@ const routes = async (app) => {
                     message: "Not found"
                 })
             }else{
-                Object.assign(film, request.body);
-                await film.save();
+                await film.remove();
                 return reply.send(film);
             }
-		}
-	)
-
-	/**
-	 * DELETE ONE FILMS
-	 */
-	app.delete("/films/:id", async (request, reply) => {
-		const {id} = request.params
-
-		const film = await Film.findOne(
-            {
-                _id: id
-            }
-        )
-
-        if (!film) {
-            return reply.status(404).send({
-                message: "Not found"
-            })
-        }else{
-            await film.remove();
-            return reply.send(film);
-        }
-	})
+        })
 }
 
 module.exports = {

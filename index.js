@@ -5,11 +5,30 @@ const configSwaggerUI = require("./plugins/swagger-ui.js")
 const mongoose = require("mongoose")
 // const {Film, People, Planet, Species, Starship, Vehicle} = require("./models/index.js")
 const path = require("path")
+const Sentry = require('@sentry/node')
+const { ProfilingIntegration } = require('@sentry/profiling-node');
 
 
 
 const start = async () => {
 	try {
+		Sentry.init({
+			dsn: "https://d42ab0e63ef38c8fbd61d767f03cfb29@o4506738861146112.ingest.sentry.io/4506738914885632",
+			tracesSampleRate: 1.0,
+  			profilesSampleRate: 1.0,
+  			integrations: [
+    			new ProfilingIntegration(),
+  			],
+		});
+
+		fastify.addHook('onRequest', (request, reply, done) => {
+			Sentry.Handlers.requestHandler()(request.raw, reply.raw, done);
+		});
+
+		fastify.addHook('onError', (request, reply, error, done) => {
+			Sentry.captureException(error);
+			done();
+		});
 		// Enregistre le plugin fastify-swagger
 		await fastify.register(require("@fastify/swagger"), configSwagger)
 

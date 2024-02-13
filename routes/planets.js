@@ -1,7 +1,27 @@
 const {Planet} = require("../models/index")
+const mongooseToSwagger = require("mongoose-to-swagger")
 
 const routes = async (app) => {
   const tags = ["Planets"];
+  const Collection = mongooseToSwagger(Planet);
+
+  const EntityProperties = {};
+  const EntityPropertiesCreate = {};
+  Object.entries(Collection.properties).forEach(([key, value]) => {
+      if (value.type === 'array' && value.items && value.items.type === 'schemaobjectid') {
+          value.items = {
+              type: 'array',
+              items: {
+                  type: 'integer'
+              }
+          }
+      }
+      // On push sur la collection properties
+      EntityProperties[key] = value;
+      if (key !== '_id') {
+          EntityPropertiesCreate[key] = value;
+      }
+  });
 
   /**
    * CREATE ONE PLANET
@@ -14,43 +34,19 @@ const routes = async (app) => {
           summary: "Create a new planet",
           body: {
             type: "object",
-            properties: {
-              climate: {
-                type: "string",
-                default: "test"
-              },
-              surface_water: {
-                type: "string",
-                default: "test"
-              },
-              name: {
-                type: "string",
-                default: "test"
-              },
-              diameter: {
-                type: "string",
-                default: "test"
-              },
-              rotation_period: {
-                type: "string",
-                default: "test"
-              },
-              terrain: {
-                type: "string",
-                default: "test"
-              },
-              gravity: {
-                type: "string",
-                default: "test"
-              },
-              orbital_period: {
-                type: "string",
-                default: "test"
-              },
-              population: {
-                type: "string",
-                default: "test"
-              },
+            properties: EntityPropertiesCreate,
+          },
+          response: {
+            200: {
+                response: 200,
+                content: {
+                    "application/json": {
+                        schema: {
+                            type: "object",
+                            properties: EntityProperties,
+                        },
+                    },
+                },
             },
           },
         },
@@ -100,30 +96,75 @@ const routes = async (app) => {
   /**
    * GET ONE PLANET
    */
-  app.post(
-    "/planet/id",
+  app.get(
+    "/planet/:id",
     {
       schema: {
         tags: tags,
         summary: "Find one planet",
-        body: {
-          type: "object",
-          properties: {
-            id : {
-              type: "number",
-              default: "1"
-            }
-          }
-        }
+        response: {
+          200: {
+              response: 200,
+              content: {
+                  "application/json": {
+                      schema: {
+                          type: "object",
+                          properties: EntityProperties,
+                      },
+                  },
+              },
+          },
+      },
       }
     },
     async (request, reply) => {
-      const {id} = request.body;
+      const id = request.params.id;
       const planet = await Planet.findById(id);
       reply.send({
         message: "Find one planet",
         data: planet,
       })
+    }
+  );
+
+  /**
+   * Update one planet 
+   */
+  app.put(
+    "/planet/:id/planet",
+    {
+      schema: {
+        tags: tags,
+        summary: "Update one planet",
+        body: {
+          type: "object",
+          properties: EntityProperties
+        },
+        response: {
+          200: {
+              response: 200,
+              content: {
+                  "application/json": {
+                      schema: {
+                          type: "object",
+                          properties: EntityProperties,
+                      },
+                  },
+              },
+          },
+        },
+      }
+    },
+    async (request, reply) => {
+        const planetId = request.params.id;
+    
+        const updatedData = request.body;
+    
+        const updatedPlanet = await Planet.findByIdAndUpdate(planetId, updatedData, {
+          new: true,
+        });
+
+        return reply.send(updatedPlanet);
     }
   )
   // app.get(

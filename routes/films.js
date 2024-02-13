@@ -1,12 +1,28 @@
 const {Film} = require("../models/index.js")
 const mongooseToSwagger = require("mongoose-to-swagger")
-const CollectionsProperties = require("../utils/collectionsProperties.js")
 
 const routes = async (app) => {
 	const tags = ["Films"];
+    const Collection = mongooseToSwagger(Film);
 
-    const FilmSwagger = mongooseToSwagger(Film);
-    
+    const EntityProperties = {};
+    const EntityPropertiesCreate = {};
+    Object.entries(Collection.properties).forEach(([key, value]) => {
+        if (value.type === 'array' && value.items && value.items.type === 'schemaobjectid') {
+            value.items = {
+                type: 'array',
+                items: {
+                    type: 'integer'
+                }
+            }
+        }
+        // On push sur la collection properties
+        EntityProperties[key] = value;
+        if (key !== '_id') {
+            EntityPropertiesCreate[key] = value;
+        }
+    });
+
 	/**
 	 * GET FILMS
 	 */
@@ -50,13 +66,12 @@ const routes = async (app) => {
                             },
                             data: {
                                 type: "array",
-                                // example:
                             },
                         },
                     },
                 },
             },
-			onRequest: [app.authenticate],
+			// onRequest: [app.authenticate],
 		},
 		async (request, reply) => {
 			// const {page, limit, order} = request.params
@@ -64,10 +79,12 @@ const routes = async (app) => {
 			const limit = request.params.limit || 10
 			const order = request.params.order == "ASC" ? "asc" : "desc"
 
+            const totalFilms = await Film.find().countDocuments()
+
 			const films = await Film.find().limit(limit).skip((page - 1) * limit).sort({title: order})
 
 			return reply.send({
-				count: films.length,
+				count: totalFilms,
 				page: page,
 				limit: limit,
 				data: films,
@@ -87,13 +104,16 @@ const routes = async (app) => {
                 tags: tags,
                 body: {
                     type: "object",
-                    properties: FilmSwagger.properties,
+                    properties: EntityPropertiesCreate,
                 },
                 response: {
                     200: {
                         content: {
                             "application/json": {
-                                $ref: "#/components/schemas/Film",
+                                schema: {
+                                    type: "object",
+                                    properties: EntityProperties,
+                                },
                             },
                         },
                     },
@@ -130,7 +150,8 @@ const routes = async (app) => {
                         content: {
                             "application/json": {
                                 schema: {
-                                    // $ref: "#/components/schemas/Film",
+                                    type: "object",
+                                    properties: EntityProperties,
                                 },
                             },
                         },
@@ -141,11 +162,11 @@ const routes = async (app) => {
 		async (request, reply) => {
 			const id = request.params.id
 
-			const film = await prisma.people.findUnique({
-				where: {
-					id: Number(id),
-				},
-			})
+			const film = await Film.findOne(
+                {
+                    _id: id
+                }
+            )
 			reply.send(film)
 		}
 	)

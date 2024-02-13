@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const mongooseToSwagger = require("mongoose-to-swagger")
 // Modèle pour l'entité "People"
 const peopleSchema = new mongoose.Schema({
   name: String,

@@ -8,10 +8,10 @@ const routes = async (app) => {
         saltWorkFactor: 12
     })
     /**
-	 * SIGNUP
+	 * Register
 	 */
     app.post(
-		"/signup",
+		"/register",
 		{
 			schema: {
 				summary: "Create new user",
@@ -92,10 +92,10 @@ const routes = async (app) => {
 		}
 	)
 	/**
-	 * SIGNIN
+	 * Login
 	 */
 	app.post(
-		"/signin",
+		"/login",
 		{
 			schema: {
 				description: "Authentification",

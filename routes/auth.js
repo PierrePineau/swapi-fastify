@@ -1,3 +1,6 @@
+const {User} = require("../models/index.js")
+
+
 const routes = async (app) => {
 	const tags = ["Auth"]
 
@@ -39,11 +42,10 @@ const routes = async (app) => {
 			const {email, password } = request.body
 
             // On vérifie si l'utilisateur existe
-            const userAlreadyExist = await prisma.users.findUnique({
-                where: {
-                    email: email
-                }
+            const userAlreadyExist = await User.findOne({
+                email: email
             })
+
             if(userAlreadyExist){
                 reply.status(401).send({message: "User already exist"})
             }else{
@@ -52,16 +54,16 @@ const routes = async (app) => {
                 const passwordHashed = await app.bcrypt.hash(password)
 
                 // On crée l'utilisateur
-                const user = await prisma.users.create({
-                    data: {
-                        email,
-                        password: passwordHashed,
-                    },
+                const user = await User.create({
+                    email: email,
+                    password: passwordHashed,
+                    roles: ["ROLE_USER"]
                 })
                 reply.send({
                     message: "User created",
                     data: {
                         email: user.email,
+                        token: app.jwt.sign({email: user.email})
                     }
                 })
             }
@@ -96,10 +98,8 @@ const routes = async (app) => {
 			const {email, password } = request.body
 
             // On vérifie si l'utilisateur existe
-            const user = await prisma.users.findUnique({
-                where: {
-                    email: email
-                }
+            const user = await User.findOne({
+                email: email
             })
 
             // Si l'utilisateur n'existe pas
@@ -108,7 +108,7 @@ const routes = async (app) => {
             }else{
 
                 // On vérifie le mot de passe
-                const passwordMatch = await app.bcrypt.compare(password, user.passwordHashed)
+                const passwordMatch = await app.bcrypt.compare(password, user.password)
 
                 // Si le mot de passe est bon
                 if(passwordMatch){

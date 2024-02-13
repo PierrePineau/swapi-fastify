@@ -103,5 +103,14 @@ const starshipSchema = new mongoose.Schema({
 
 const Starship = mongoose.model("Starship", starshipSchema);
 
+// Modèle pour l'entité "User"
+const userSchema = new mongoose.Schema({
+    email: String,
+    password: String,
+    roles: [String],
+}, {collection: "Users"});
 
-module.exports = { Film, People, Planet, Species, Vehicle, Starship };
+const User = mongoose.model("User", userSchema);
+
+
+module.exports = { Film, People, Planet, Species, Vehicle, Starship, User };

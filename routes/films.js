@@ -55,7 +55,7 @@ const routes = async (app) => {
 					},
 				},
 			},
-            // onRequest: [app.authenticate]
+            onRequest: [app.authenticate]
 		},
 		async (request, reply) => {
 			// const {page, limit, order} = request.params

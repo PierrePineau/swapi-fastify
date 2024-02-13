@@ -3,11 +3,10 @@ const fastify = require("fastify")()
 const configSwagger = require("./plugins/swagger.js")
 const configSwaggerUI = require("./plugins/swagger-ui.js")
 const mongoose = require("mongoose")
-const {Film, People, Planet, Species, Starship, Vehicle} = require("./models/index.js")
+// const {Film, People, Planet, Species, Starship, Vehicle} = require("./models/index.js")
 const path = require("path")
 
-const films = require("./routes/films.js");
-// const people = require("./routes/people.js");
+
 
 const start = async () => {
 	try {
@@ -17,10 +16,21 @@ const start = async () => {
 		// Enregistre le plugin fastify-swagger-ui
 		await fastify.register(require("@fastify/swagger-ui"), configSwaggerUI)
 
+        // Enregistre JWT
+        await fastify.register(require("@fastify/jwt"), {
+            secret: "mysupersecretkey",
+        })
+
+        const auth = require("./routes/auth.js");
+        const films = require("./routes/films.js");
+
 		// fastify.register(require("@fastify/autoload"), {
 		//     dir: path.join(__dirname, "/routes/"),
 		// });
 		// console.log(path.join(__dirname, "/routes"));
+
+		// Authentification
+		auth.routes(fastify);
 
 		// Les routes des films
 		films.routes(fastify);

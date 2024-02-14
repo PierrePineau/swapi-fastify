@@ -137,7 +137,7 @@ const configSwagger = {
                 order: 1,
             },
             FilmsTag = {
-                name: "Films",
+                name: "Film",
                 description: "Films API",
             },
             PeoplesTag = {
@@ -145,19 +145,19 @@ const configSwagger = {
                 description: "People API",
             },
             PlanetsTag = {
-                name: "Planets",
+                name: "Planet",
                 description: "Planets API",
             },
             SpeciesTag = {
-                name: "Species",
+                name: "Specie",
                 description: "Species API",
             },
             StarShipsTag = {
-                name: "Starships",
+                name: "Starship",
                 description: "StarShips API",
             },
             VehiclesTag = {
-                name: "Vehicles",
+                name: "Vehicle",
                 description: "Vehicles API",
             },
         ],

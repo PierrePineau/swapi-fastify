@@ -15,7 +15,6 @@ const routes = async (app) => {
 		{
 			schema: {
 				summary: "Create new user",
-				description: "Create new user",
 				tags: tags,
                 body: {
                     type: "object",
@@ -51,6 +50,21 @@ const routes = async (app) => {
                                                     type: "string",
                                                 },
                                             },
+                                        },
+                                    },
+                                },
+                            },
+                        },
+                    },
+                    401: {
+                        description: "Unauthorized",
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    type: "object",
+                                    properties: {
+                                        message: {
+                                            type: "string",
                                         },
                                     },
                                 },
@@ -98,9 +112,8 @@ const routes = async (app) => {
 		"/login",
 		{
 			schema: {
-				description: "Authentification",
+				summary: "Authentification",
 				tags: tags,
-				// summary: "Create a new film",
 				body: {
 					type: "object",
 					properties: {
@@ -114,6 +127,49 @@ const routes = async (app) => {
                         }
 					},
 				},
+                response: {
+                    200: {
+                        description: "Successful response",
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    type: "object",
+                                    properties: {
+                                        message: {
+                                            type: "string",
+                                        },
+                                        data: {
+                                            type: "object",
+                                            properties: {
+                                                email: {
+                                                    type: "string",
+                                                },
+                                                token: {
+                                                    type: "string",
+                                                },
+                                            },
+                                        },
+                                    },
+                                },
+                            },
+                        },
+                    },
+                    401: {
+                        description: "Unauthorized",
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    type: "object",
+                                    properties: {
+                                        message: {
+                                            type: "string",
+                                        },
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
 			},
 		},
 		async (request, reply) => {

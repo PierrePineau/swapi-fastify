@@ -81,6 +81,24 @@ class AbstractController {
                                 },
                             },
                         },
+                        400: {
+                            description: "Bad request",
+                            type: "object",
+                            properties: {
+                                message: {
+                                    type: "string",
+                                },
+                            },
+                        },
+                        404: {
+                            description: "Not found",
+                            type: "object",
+                            properties: {
+                                message: {
+                                    type: "string",
+                                },
+                            },
+                        },
                     },
                 },
                 // onRequest: [app.authenticate],
@@ -106,6 +124,24 @@ class AbstractController {
                                         type: "object",
                                         properties: this.entityProperties,
                                     },
+                                },
+                            },
+                        },
+                        400: {
+                            description: "Bad request",
+                            type: "object",
+                            properties: {
+                                message: {
+                                    type: "string",
+                                },
+                            },
+                        },
+                        404: {
+                            description: "Not found",
+                            type: "object",
+                            properties: {
+                                message: {
+                                    type: "string",
                                 },
                             },
                         },
@@ -136,6 +172,24 @@ class AbstractController {
                                         type: "object",
                                         properties: this.entityProperties,
                                     },
+                                },
+                            },
+                        },
+                        400: {
+                            description: "Bad request",
+                            type: "object",
+                            properties: {
+                                message: {
+                                    type: "string",
+                                },
+                            },
+                        },
+                        404: {
+                            description: "Not found",
+                            type: "object",
+                            properties: {
+                                message: {
+                                    type: "string",
                                 },
                             },
                         },
@@ -170,6 +224,24 @@ class AbstractController {
                                 },
                             },
                         },
+                        400: {
+                            description: "Bad request",
+                            type: "object",
+                            properties: {
+                                message: {
+                                    type: "string",
+                                },
+                            },
+                        },
+                        404: {
+                            description: "Not found",
+                            type: "object",
+                            properties: {
+                                message: {
+                                    type: "string",
+                                },
+                            },
+                        },
                     },
                 }
             },
@@ -185,19 +257,31 @@ class AbstractController {
                 schema: {
                     tags: this.tags,
                     summary: `Delete one ${this.singular}`,
-                    body: {
-                        type: "object",
-                        properties: this.entityPropertiesUpdate,
-                    },
                     response: {
                         200: {
-                            response: 200,
-                            content: {
-                                "application/json": {
-                                    schema: {
-                                        type: "object",
-                                        properties: this.entityProperties,
-                                    },
+                            description: "Successful response",
+                            type: "object",
+                            properties: {
+                                success: {
+                                    type: "string",
+                                },
+                            },
+                        },
+                        400: {
+                            description: "Bad request",
+                            type: "object",
+                            properties: {
+                                message: {
+                                    type: "string",
+                                },
+                            },
+                        },
+                        404: {
+                            description: "Not found",
+                            type: "object",
+                            properties: {
+                                message: {
+                                    type: "string",
                                 },
                             },
                         },
@@ -254,7 +338,7 @@ class AbstractController {
     create = async (request, reply) => {
         try {
             const body = request.body
-            const element = new Species(body)
+            const element = new Species.create(body)
             await element.save()
             return reply.send(element)
         } catch (error) {
@@ -268,10 +352,12 @@ class AbstractController {
         try {
             const id = request.params.id
 
-            const element = await Species.findOneById(
-                {
-                    _id: id
-                },
+            const body = request.body
+
+            const element = await Species.findByIdAndUpdate(
+                id,
+                body,
+                {stric: true, new: true}
             )
 
             // On vérifie si l'element existe

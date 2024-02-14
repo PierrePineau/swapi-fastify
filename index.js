@@ -57,10 +57,10 @@ const start = async () => {
 		auth.routes(fastify);
 
 		// Les routes des films
-		// films.routes(fastify);
+		films.routes(fastify);
 
 		//Les routes des planets
-		planets.routes(fastify);
+		// planets.routes(fastify);
 
 		// Les routes des People
 		people.routes(fastify);

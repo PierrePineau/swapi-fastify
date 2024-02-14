@@ -42,7 +42,7 @@ const start = async () => {
 
         const auth = require("./routes/auth.js");
         const films = require("./routes/films.js");
-        // const people = require("./routes/people.js");
+        const people = require("./routes/people.js");
         // const planets = require("./routes/planets.js");
         const species = require("./routes/species.js");
         const starships = require("./routes/starships.js");
@@ -60,7 +60,7 @@ const start = async () => {
 		films.routes(fastify);
 
 		// Les routes des People
-		// people.routes(fastify);
+		people.routes(fastify);
 
         // Les routes des Planets
         // planets.routes(fastify);

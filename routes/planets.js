@@ -78,7 +78,6 @@ const routes = async (app) => {
   /**
    * GET ALL PLANET
    */
-
   app.get(
     "/planets",
     {

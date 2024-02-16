@@ -17,7 +17,7 @@ const start = async () => {
 			tracesSampleRate: 1.0,
   			profilesSampleRate: 1.0,
   			integrations: [
-    		new ProfilingIntegration(),
+    			new ProfilingIntegration(),
   			],
 		});
 
@@ -26,9 +26,23 @@ const start = async () => {
 		});
 
 		fastify.addHook('onError', (request, reply, error, done) => {
+			// Rapporter toutes les erreurs à Sentry
 			Sentry.captureException(error);
+		  
+			// Gérer spécifiquement les erreurs 401 et 404
+			if (error.statusCode === 401) {
+			  Sentry.captureMessage('Unauthorized error occurred');
+			  return reply.code(401).send({ message: 'Unauthorized' });
+			}
+		  
+			if (error.statusCode === 404) {
+			  Sentry.captureMessage('Not found error occurred');
+			  return reply.code(404).send({ message: 'Not found' });
+			}
+		  
+			// Si ce n'est pas une erreur 401 ou 404, continuer avec la gestion normale des erreurs
 			done();
-		});
+		  });
 		// Enregistre le plugin fastify-swagger
 		await fastify.register(require("@fastify/swagger"), configSwagger)
 

@@ -338,7 +338,7 @@ class AbstractController {
     create = async (request, reply) => {
         try {
             const body = request.body
-            const element = new Species.create(body)
+            const element = await this.model.create(body)
             await element.save()
             return reply.send(element)
         } catch (error) {
@@ -354,11 +354,10 @@ class AbstractController {
 
             const body = request.body
 
-            const element = await Species.findByIdAndUpdate(
-                id,
-                body,
-                {stric: true, new: true}
-            )
+            // Utilisation de findByIdAndUpdate pour mettre à jour la planète
+            const element = await this.model.findByIdAndUpdate(id, body, { new: true });
+
+            reply.send(element);
 
             // On vérifie si l'element existe
             if (!element) {

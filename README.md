@@ -1,31 +1,52 @@
+# Swapi with Fastify
 
-# Modèle de Ridcharson
+Pierre Pineau - Leo Teixeira - Nathan Gaulard
+
+# Sommaire
+
+- Ridcharson
+- Sentry
+- Tests de Montée en Charge
+
+## Modèle de Richardson
+
+![Logo](./ridcharson.webp)
 
 
-
-
-## Introduction
+### Présentation 
 
 Le modèle de Richardson est un modèle de maturité pour les API RESTful, qui a été proposé par Leonard Richardson en 2008. Il définit quatre niveaux de maturité pour les API REST, en se basant sur les principes de l'architecture REST et les bonnes pratiques de conception d'API.
 
-## Niveau 0 : The Swamp of POX
+### Niveau 0 : Services
 
 Le niveau 0 correspond à l'utilisation de protocoles de communication standard, tels que SOAP, XML-RPC ou HTTP, pour exposer des services web. Ces services ne suivent pas les principes de l'architecture REST et ne sont pas considérés comme des API RESTful.
 
-## Niveau 1 : Ressources
+### Niveau 1 : Ressources
 
-Ce niveau de maturité consiste en l’utilisation de plusieurs URIs comme points d’entrée du système d’information mais d’un seul verbe HTTP(usuellement GET ou POST), pour toutes les opérations. Cela signifie que les ressources sont exposées via des URIs, mais les opérations sur ces ressources sont définies en utilisant des verbes HTTP standard, tels que GET, POST, PUT et DELETE.
 
-## Niveau 2 : HTTP Verbs
+Le niveau 1 correspond à l'utilisation de ressources pour identifier les entités manipulées par l'API. Les ressources sont généralement identifiées par des URI, mais les opérations sur ces ressources ne suivent pas les principes de l'architecture REST.
+
+### Niveau 2 : Verbes HTTP
 
 Le niveau 2 correspond à l'utilisation des verbes HTTP pour définir les opérations sur les ressources. Cela signifie que les opérations de lecture, d'écriture, de mise à jour et de suppression sont définies en utilisant les verbes HTTP GET, POST, PUT et DELETE, respectivement.
 
-## Niveau 3 : Hypermedia Controls
+### Niveau 3 : Hyperliens
 
 Le niveau 3 correspond à l'utilisation des hyperliens pour représenter les relations entre les ressources. Cela signifie que les réponses renvoyées par l'API contiennent des hyperliens vers d'autres ressources liées, ce qui permet de naviguer dans l'API de manière dynamique.
 
+## Sentry
 
-# Tests de Montée en Charge
+1. **Détection d'Erreurs :** Sentry capture automatiquement les erreurs, les exceptions et les événements indésirables dans les applications.
+
+2. **Informations Contextuelles :** Il fournit des informations détaillées sur les erreurs, y compris la trace de la pile, les variables, les informations de version, et d'autres métadonnées utiles pour faciliter la résolution des problèmes.
+
+3. **Suivi des Performances :** Outre la gestion d'erreurs, Sentry propose également des fonctionnalités de suivi des performances pour aider à identifier les problèmes de performances dans les applications.
+
+4. **Reporting en Temps Réel :** Sentry offre un reporting en temps réel des erreurs, permettant aux développeurs d'agir rapidement pour résoudre les problèmes.
+
+5. **Versioning :** Il permet de lier les erreurs à des versions spécifiques de l'application, facilitant ainsi la traçabilité et la résolution des problèmes.
+
+
 
 ## Enjeux des tests de montée en charge
 
@@ -75,15 +96,8 @@ Le niveau 3 correspond à l'utilisation des hyperliens pour représenter les rel
 
 3. **[Locust :](https://locust.io/)** Locust est un outil open-source de test de charge écrit en Python. Il permet de simuler un grand nombre d'utilisateurs pour tester les performances des applications web.
 
-## Sentry
 
-1. **Détection d'Erreurs :** Sentry capture automatiquement les erreurs, les exceptions et les événements indésirables dans les applications.
+## Project
 
-2. **Informations Contextuelles :** Il fournit des informations détaillées sur les erreurs, y compris la trace de la pile, les variables, les informations de version, et d'autres métadonnées utiles pour faciliter la résolution des problèmes.
-
-3. **Suivi des Performances :** Outre la gestion d'erreurs, Sentry propose également des fonctionnalités de suivi des performances pour aider à identifier les problèmes de performances dans les applications.
-
-4. **Reporting en Temps Réel :** Sentry offre un reporting en temps réel des erreurs, permettant aux développeurs d'agir rapidement pour résoudre les problèmes.
-
-5. **Versioning :** Il permet de lier les erreurs à des versions spécifiques de l'application, facilitant ainsi la traçabilité et la résolution des problèmes.
+- [Github Swapi with fastify](https://github.com/PierrePineau/swapi-fastify)
 

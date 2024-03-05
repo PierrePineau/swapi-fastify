@@ -381,10 +381,10 @@ class AbstractController {
         try {
             const id = request.params.id
 
-            const element = await this.model.findOneById(
+            const element = await this.model.findOne(
                 {
                     _id: id
-                },
+                }
             )
 
             // On vérifie si l'element existe
@@ -395,9 +395,13 @@ class AbstractController {
             }
 
             // On supprime
-            await element.delete();
+            await this.model.deleteOne(
+                {
+                    _id: id
+                }
+            )
 
-            return reply.send(element);
+            return reply.send({success: "Element deleted"});
         } catch (error) {
             return reply.status(400).send({
                 message: error.message

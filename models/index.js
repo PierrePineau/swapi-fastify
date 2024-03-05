@@ -16,6 +16,7 @@ const peopleSchema = new mongoose.Schema({
   species: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Species' }],
   vehicles: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Vehicle' }],
   starships: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Starship' }],
+  path: { type: String, required: true},
 }, {collection: "People"});
 
 const People = mongoose.model("People", peopleSchema);
@@ -34,6 +35,7 @@ const planetSchema = new mongoose.Schema({
   rotation_period : { type: String, required: true},
   orbital_period : { type: String, required: true},
   films: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Film' }],
+  path: { type: String, required: true},
 }, {collection: "Planets"});
 
 const Planet = mongoose.model("Planet", planetSchema);
@@ -53,7 +55,7 @@ const filmSchema = new mongoose.Schema({
     species: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Species' }],
     vehicles: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Vehicle' }],
     starships: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Starship' }],
-    path: { type: String, required: true, default: "/films/"},
+    path: { type: String, required: true},
 }, {collection: "Films"});
 
 const Film = mongoose.model("Films", filmSchema)
@@ -74,6 +76,7 @@ const speciesSchema = new mongoose.Schema({
   created : { type: Date, default: Date.now, required: true},
   films: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Film' }],
   people: [{ type: mongoose.Schema.Types.ObjectId, ref: 'People' }],
+  path: { type: String, required: true},
 }, {collection: "Species"});
 
 const Species = mongoose.model("Species", speciesSchema);
@@ -95,6 +98,7 @@ const vehicleSchema = new mongoose.Schema({
   created : { type: Date, default: Date.now, required: true},
   films: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Film' }],
   pilots: [{ type: mongoose.Schema.Types.ObjectId, ref: 'People' }],
+  path: { type: String, required: true},
 }, {collection: "Vehicles"});
 
 const Vehicle = mongoose.model("Vehicle", vehicleSchema);
@@ -114,6 +118,7 @@ const starshipSchema = new mongoose.Schema({
   starship_class: { type: String, required: true},
   films: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Film' }],
   pilots: [{ type: mongoose.Schema.Types.ObjectId, ref: 'People' }],
+  path: { type: String, required: true},
 }, {collection: "Starships"});
 
 const Starship = mongoose.model("Starship", starshipSchema);

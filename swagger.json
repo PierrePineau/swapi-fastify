@@ -7,7 +7,7 @@
 			"User": {"title": "User", "required": ["email", "password", "roles"], "properties": {"email": {"type": "string"}, "password": {"type": "string"}, "roles": {"type": "array", "items": {"type": "object", "properties": {}}}, "_id": {"type": "string"}}},
 			"Film": {
 				"title": "Films",
-				"required": ["title", "episode_id", "director", "producer", "release_date", "edited", "created", "opening_crawl"],
+				"required": ["title", "episode_id", "director", "producer", "release_date", "edited", "created", "opening_crawl", "path"],
 				"properties": {
 					"title": {"type": "string"},
 					"episode_id": {"type": "number"},
@@ -22,12 +22,13 @@
 					"species": {"type": "array", "items": {"type": "integer"}},
 					"vehicles": {"type": "array", "items": {"type": "integer"}},
 					"starships": {"type": "array", "items": {"type": "integer"}},
+					"path": {"type": "string"},
 					"_id": {"type": "string"}
 				}
 			},
 			"People": {
 				"title": "People",
-				"required": ["name", "birth_year", "gender", "height", "mass", "hair_color", "skin_color", "eye_color", "homeworld", "created", "edited"],
+				"required": ["name", "birth_year", "gender", "height", "mass", "hair_color", "skin_color", "eye_color", "homeworld", "created", "edited", "path"],
 				"properties": {
 					"name": {"type": "string"},
 					"birth_year": {"type": "string"},
@@ -44,12 +45,13 @@
 					"species": {"type": "array", "items": {"type": "integer"}},
 					"vehicles": {"type": "array", "items": {"type": "integer"}},
 					"starships": {"type": "array", "items": {"type": "integer"}},
+					"path": {"type": "string"},
 					"_id": {"type": "string"}
 				}
 			},
 			"Planet": {
 				"title": "Planet",
-				"required": ["name", "climate", "terrain", "gravity", "population", "created", "edited", "surface_water", "diameter", "rotation_period", "orbital_period"],
+				"required": ["name", "climate", "terrain", "gravity", "population", "created", "edited", "surface_water", "diameter", "rotation_period", "orbital_period", "path"],
 				"properties": {
 					"name": {"type": "string"},
 					"climate": {"type": "string"},
@@ -63,12 +65,13 @@
 					"rotation_period": {"type": "string"},
 					"orbital_period": {"type": "string"},
 					"films": {"type": "array", "items": {"type": "integer"}},
+					"path": {"type": "string"},
 					"_id": {"type": "string"}
 				}
 			},
 			"Specie": {
 				"title": "Species",
-				"required": ["name", "classification", "designation", "created", "average_height", "average_lifespan", "eye_colors", "hair_colors", "skin_colors", "language", "homeworld", "edited"],
+				"required": ["name", "classification", "designation", "created", "average_height", "average_lifespan", "eye_colors", "hair_colors", "skin_colors", "language", "homeworld", "edited", "path"],
 				"properties": {
 					"name": {"type": "string"},
 					"classification": {"type": "string"},
@@ -84,12 +87,13 @@
 					"edited": {"type": "string", "format": "date-time"},
 					"films": {"type": "array", "items": {"type": "integer"}},
 					"people": {"type": "array", "items": {"type": "integer"}},
+					"path": {"type": "string"},
 					"_id": {"type": "string"}
 				}
 			},
 			"Vehicle": {
 				"title": "Vehicle",
-				"required": ["name", "model", "manufacturer", "cost_in_credits", "length", "max_atmosphering_speed", "crew", "passengers", "cargo_capacity", "consumables", "vehicle_class", "edited", "created"],
+				"required": ["name", "model", "manufacturer", "cost_in_credits", "length", "max_atmosphering_speed", "crew", "passengers", "cargo_capacity", "consumables", "vehicle_class", "edited", "created", "path"],
 				"properties": {
 					"name": {"type": "string"},
 					"model": {"type": "string"},
@@ -106,12 +110,13 @@
 					"created": {"type": "string", "format": "date-time"},
 					"films": {"type": "array", "items": {"type": "integer"}},
 					"pilots": {"type": "array", "items": {"type": "integer"}},
+					"path": {"type": "string"},
 					"_id": {"type": "string"}
 				}
 			},
 			"Starship": {
 				"title": "Starship",
-				"required": ["name", "model", "manufacturer", "cost_in_credits", "length", "max_atmosphering_speed", "crew", "passengers", "cargo_capacity", "consumables", "starship_class"],
+				"required": ["name", "model", "manufacturer", "cost_in_credits", "length", "max_atmosphering_speed", "crew", "passengers", "cargo_capacity", "consumables", "starship_class", "path"],
 				"properties": {
 					"name": {"type": "string"},
 					"model": {"type": "string"},
@@ -126,15 +131,10 @@
 					"starship_class": {"type": "string"},
 					"films": {"type": "array", "items": {"type": "integer"}},
 					"pilots": {"type": "array", "items": {"type": "integer"}},
+					"path": {"type": "string"},
 					"_id": {"type": "string"}
 				}
 			}
-		},
-		"parameters": {
-			"page": {"name": "page", "in": "query", "description": "Page of item", "required": false, "schema": {"type": "number", "default": 1, "minimum": 1}},
-			"limit": {"name": "limit", "in": "query", "description": "Limit of item", "required": false, "schema": {"type": "number", "default": 10, "minimum": 1}},
-			"order": {"name": "order", "in": "query", "description": "Order of item", "required": false, "schema": {"type": "string", "default": "DESC", "enum": ["ASC", "DESC"]}},
-			"list": {"name": "List", "in": "query", "description": "List of item", "required": false, "schema": {"type": "object", "properties": {"page": {"type": "integer", "minimum": 1}, "limit": {"type": "integer", "minimum": 1}, "order": {"type": "string", "enum": ["ASC", "DESC"]}}}}
 		}
 	},
 	"paths": {
@@ -171,31 +171,25 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"description": "Successful response",
-									"type": "object",
-									"properties": {
-										"total": {"type": "number"},
-										"data": {
-											"type": "array",
-											"items": {
-												"type": "object",
-												"properties": {
-													"title": {"type": "string"},
-													"episode_id": {"type": "number"},
-													"director": {"type": "string"},
-													"producer": {"type": "string"},
-													"release_date": {"type": "string", "format": "date-time"},
-													"edited": {"type": "string", "format": "date-time"},
-													"created": {"type": "string", "format": "date-time"},
-													"opening_crawl": {"type": "string"},
-													"characters": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
-													"planets": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
-													"species": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
-													"vehicles": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
-													"starships": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
-													"_id": {"type": "string"}
-												}
-											}
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"title": {"type": "string"},
+											"episode_id": {"type": "number"},
+											"director": {"type": "string"},
+											"producer": {"type": "string"},
+											"release_date": {"type": "string", "format": "date-time"},
+											"edited": {"type": "string", "format": "date-time"},
+											"created": {"type": "string", "format": "date-time"},
+											"opening_crawl": {"type": "string"},
+											"characters": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
+											"planets": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
+											"species": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
+											"vehicles": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
+											"starships": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
+											"path": {"type": "string"},
+											"_id": {"type": "string"}
 										}
 									}
 								}
@@ -261,6 +255,7 @@
 										"species": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
 										"vehicles": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
 										"starships": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
+										"path": {"type": "string"},
 										"_id": {"type": "string"}
 									}
 								}
@@ -304,6 +299,7 @@
 										"species": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
 										"vehicles": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
 										"starships": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
+										"path": {"type": "string"},
 										"_id": {"type": "string"}
 									}
 								}
@@ -370,6 +366,7 @@
 										"species": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
 										"vehicles": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
 										"starships": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
+										"path": {"type": "string"},
 										"_id": {"type": "string"}
 									}
 								}
@@ -416,33 +413,27 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"description": "Successful response",
-									"type": "object",
-									"properties": {
-										"total": {"type": "number"},
-										"data": {
-											"type": "array",
-											"items": {
-												"type": "object",
-												"properties": {
-													"name": {"type": "string"},
-													"birth_year": {"type": "string"},
-													"gender": {"type": "string"},
-													"height": {"type": "string"},
-													"mass": {"type": "string"},
-													"hair_color": {"type": "string"},
-													"skin_color": {"type": "string"},
-													"eye_color": {"type": "string"},
-													"homeworld": {"type": "string"},
-													"created": {"type": "string", "format": "date-time"},
-													"edited": {"type": "string", "format": "date-time"},
-													"films": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
-													"species": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
-													"vehicles": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
-													"starships": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
-													"_id": {"type": "string"}
-												}
-											}
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"name": {"type": "string"},
+											"birth_year": {"type": "string"},
+											"gender": {"type": "string"},
+											"height": {"type": "string"},
+											"mass": {"type": "string"},
+											"hair_color": {"type": "string"},
+											"skin_color": {"type": "string"},
+											"eye_color": {"type": "string"},
+											"homeworld": {"type": "string"},
+											"created": {"type": "string", "format": "date-time"},
+											"edited": {"type": "string", "format": "date-time"},
+											"films": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
+											"species": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
+											"vehicles": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
+											"starships": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
+											"path": {"type": "string"},
+											"_id": {"type": "string"}
 										}
 									}
 								}
@@ -512,6 +503,7 @@
 										"species": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
 										"vehicles": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
 										"starships": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
+										"path": {"type": "string"},
 										"_id": {"type": "string"}
 									}
 								}
@@ -557,6 +549,7 @@
 										"species": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
 										"vehicles": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
 										"starships": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
+										"path": {"type": "string"},
 										"_id": {"type": "string"}
 									}
 								}
@@ -627,6 +620,7 @@
 										"species": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
 										"vehicles": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
 										"starships": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
+										"path": {"type": "string"},
 										"_id": {"type": "string"}
 									}
 								}
@@ -673,30 +667,24 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"description": "Successful response",
-									"type": "object",
-									"properties": {
-										"total": {"type": "number"},
-										"data": {
-											"type": "array",
-											"items": {
-												"type": "object",
-												"properties": {
-													"name": {"type": "string"},
-													"climate": {"type": "string"},
-													"terrain": {"type": "string"},
-													"gravity": {"type": "string"},
-													"population": {"type": "string"},
-													"created": {"type": "string", "format": "date-time"},
-													"edited": {"type": "string", "format": "date-time"},
-													"surface_water": {"type": "string"},
-													"diameter": {"type": "string"},
-													"rotation_period": {"type": "string"},
-													"orbital_period": {"type": "string"},
-													"films": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
-													"_id": {"type": "string"}
-												}
-											}
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"name": {"type": "string"},
+											"climate": {"type": "string"},
+											"terrain": {"type": "string"},
+											"gravity": {"type": "string"},
+											"population": {"type": "string"},
+											"created": {"type": "string", "format": "date-time"},
+											"edited": {"type": "string", "format": "date-time"},
+											"surface_water": {"type": "string"},
+											"diameter": {"type": "string"},
+											"rotation_period": {"type": "string"},
+											"orbital_period": {"type": "string"},
+											"films": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
+											"path": {"type": "string"},
+											"_id": {"type": "string"}
 										}
 									}
 								}
@@ -760,6 +748,7 @@
 										"rotation_period": {"type": "string"},
 										"orbital_period": {"type": "string"},
 										"films": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
+										"path": {"type": "string"},
 										"_id": {"type": "string"}
 									}
 								}
@@ -802,6 +791,7 @@
 										"rotation_period": {"type": "string"},
 										"orbital_period": {"type": "string"},
 										"films": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
+										"path": {"type": "string"},
 										"_id": {"type": "string"}
 									}
 								}
@@ -866,6 +856,7 @@
 										"rotation_period": {"type": "string"},
 										"orbital_period": {"type": "string"},
 										"films": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
+										"path": {"type": "string"},
 										"_id": {"type": "string"}
 									}
 								}
@@ -912,32 +903,26 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"description": "Successful response",
-									"type": "object",
-									"properties": {
-										"total": {"type": "number"},
-										"data": {
-											"type": "array",
-											"items": {
-												"type": "object",
-												"properties": {
-													"name": {"type": "string"},
-													"classification": {"type": "string"},
-													"designation": {"type": "string"},
-													"created": {"type": "string", "format": "date-time"},
-													"average_height": {"type": "string"},
-													"average_lifespan": {"type": "string"},
-													"eye_colors": {"type": "string"},
-													"hair_colors": {"type": "string"},
-													"skin_colors": {"type": "string"},
-													"language": {"type": "string"},
-													"homeworld": {"type": "string"},
-													"edited": {"type": "string", "format": "date-time"},
-													"films": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
-													"people": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
-													"_id": {"type": "string"}
-												}
-											}
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"name": {"type": "string"},
+											"classification": {"type": "string"},
+											"designation": {"type": "string"},
+											"created": {"type": "string", "format": "date-time"},
+											"average_height": {"type": "string"},
+											"average_lifespan": {"type": "string"},
+											"eye_colors": {"type": "string"},
+											"hair_colors": {"type": "string"},
+											"skin_colors": {"type": "string"},
+											"language": {"type": "string"},
+											"homeworld": {"type": "string"},
+											"edited": {"type": "string", "format": "date-time"},
+											"films": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
+											"people": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
+											"path": {"type": "string"},
+											"_id": {"type": "string"}
 										}
 									}
 								}
@@ -1005,6 +990,7 @@
 										"edited": {"type": "string", "format": "date-time"},
 										"films": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
 										"people": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
+										"path": {"type": "string"},
 										"_id": {"type": "string"}
 									}
 								}
@@ -1049,6 +1035,7 @@
 										"edited": {"type": "string", "format": "date-time"},
 										"films": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
 										"people": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
+										"path": {"type": "string"},
 										"_id": {"type": "string"}
 									}
 								}
@@ -1117,6 +1104,7 @@
 										"edited": {"type": "string", "format": "date-time"},
 										"films": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
 										"people": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
+										"path": {"type": "string"},
 										"_id": {"type": "string"}
 									}
 								}
@@ -1163,31 +1151,25 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"description": "Successful response",
-									"type": "object",
-									"properties": {
-										"total": {"type": "number"},
-										"data": {
-											"type": "array",
-											"items": {
-												"type": "object",
-												"properties": {
-													"name": {"type": "string"},
-													"model": {"type": "string"},
-													"manufacturer": {"type": "string"},
-													"cost_in_credits": {"type": "string"},
-													"length": {"type": "string"},
-													"max_atmosphering_speed": {"type": "string"},
-													"crew": {"type": "string"},
-													"passengers": {"type": "string"},
-													"cargo_capacity": {"type": "string"},
-													"consumables": {"type": "string"},
-													"starship_class": {"type": "string"},
-													"films": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
-													"pilots": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
-													"_id": {"type": "string"}
-												}
-											}
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"name": {"type": "string"},
+											"model": {"type": "string"},
+											"manufacturer": {"type": "string"},
+											"cost_in_credits": {"type": "string"},
+											"length": {"type": "string"},
+											"max_atmosphering_speed": {"type": "string"},
+											"crew": {"type": "string"},
+											"passengers": {"type": "string"},
+											"cargo_capacity": {"type": "string"},
+											"consumables": {"type": "string"},
+											"starship_class": {"type": "string"},
+											"films": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
+											"pilots": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
+											"path": {"type": "string"},
+											"_id": {"type": "string"}
 										}
 									}
 								}
@@ -1253,6 +1235,7 @@
 										"starship_class": {"type": "string"},
 										"films": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
 										"pilots": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
+										"path": {"type": "string"},
 										"_id": {"type": "string"}
 									}
 								}
@@ -1296,6 +1279,7 @@
 										"starship_class": {"type": "string"},
 										"films": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
 										"pilots": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
+										"path": {"type": "string"},
 										"_id": {"type": "string"}
 									}
 								}
@@ -1362,6 +1346,7 @@
 										"starship_class": {"type": "string"},
 										"films": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
 										"pilots": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
+										"path": {"type": "string"},
 										"_id": {"type": "string"}
 									}
 								}
@@ -1408,33 +1393,27 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"description": "Successful response",
-									"type": "object",
-									"properties": {
-										"total": {"type": "number"},
-										"data": {
-											"type": "array",
-											"items": {
-												"type": "object",
-												"properties": {
-													"name": {"type": "string"},
-													"model": {"type": "string"},
-													"manufacturer": {"type": "string"},
-													"cost_in_credits": {"type": "string"},
-													"length": {"type": "string"},
-													"max_atmosphering_speed": {"type": "string"},
-													"crew": {"type": "string"},
-													"passengers": {"type": "string"},
-													"cargo_capacity": {"type": "string"},
-													"consumables": {"type": "string"},
-													"vehicle_class": {"type": "string"},
-													"edited": {"type": "string", "format": "date-time"},
-													"created": {"type": "string", "format": "date-time"},
-													"films": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
-													"pilots": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
-													"_id": {"type": "string"}
-												}
-											}
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"name": {"type": "string"},
+											"model": {"type": "string"},
+											"manufacturer": {"type": "string"},
+											"cost_in_credits": {"type": "string"},
+											"length": {"type": "string"},
+											"max_atmosphering_speed": {"type": "string"},
+											"crew": {"type": "string"},
+											"passengers": {"type": "string"},
+											"cargo_capacity": {"type": "string"},
+											"consumables": {"type": "string"},
+											"vehicle_class": {"type": "string"},
+											"edited": {"type": "string", "format": "date-time"},
+											"created": {"type": "string", "format": "date-time"},
+											"films": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
+											"pilots": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
+											"path": {"type": "string"},
+											"_id": {"type": "string"}
 										}
 									}
 								}
@@ -1504,6 +1483,7 @@
 										"created": {"type": "string", "format": "date-time"},
 										"films": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
 										"pilots": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
+										"path": {"type": "string"},
 										"_id": {"type": "string"}
 									}
 								}
@@ -1549,6 +1529,7 @@
 										"created": {"type": "string", "format": "date-time"},
 										"films": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
 										"pilots": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
+										"path": {"type": "string"},
 										"_id": {"type": "string"}
 									}
 								}
@@ -1619,6 +1600,7 @@
 										"created": {"type": "string", "format": "date-time"},
 										"films": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
 										"pilots": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}},
+										"path": {"type": "string"},
 										"_id": {"type": "string"}
 									}
 								}

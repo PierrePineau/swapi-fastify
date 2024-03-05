@@ -49,3 +49,15 @@
 
 3. **Locust :** Locust est un outil open-source de test de charge écrit en Python. Il permet de simuler un grand nombre d'utilisateurs pour tester les performances des applications web.
 
+## Sentry
+
+1. **Détection d'Erreurs :** Sentry capture automatiquement les erreurs, les exceptions et les événements indésirables dans les applications.
+
+2. **Informations Contextuelles :** Il fournit des informations détaillées sur les erreurs, y compris la trace de la pile, les variables, les informations de version, et d'autres métadonnées utiles pour faciliter la résolution des problèmes.
+
+3. **Suivi des Performances :** Outre la gestion d'erreurs, Sentry propose également des fonctionnalités de suivi des performances pour aider à identifier les problèmes de performances dans les applications.
+
+4. **Reporting en Temps Réel :** Sentry offre un reporting en temps réel des erreurs, permettant aux développeurs d'agir rapidement pour résoudre les problèmes.
+
+5. **Versioning :** Il permet de lier les erreurs à des versions spécifiques de l'application, facilitant ainsi la traçabilité et la résolution des problèmes.
+

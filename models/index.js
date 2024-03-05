@@ -53,6 +53,7 @@ const filmSchema = new mongoose.Schema({
     species: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Species' }],
     vehicles: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Vehicle' }],
     starships: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Starship' }],
+    path: { type: String, required: true, default: "/films/"},
 }, {collection: "Films"});
 
 const Film = mongoose.model("Films", filmSchema)

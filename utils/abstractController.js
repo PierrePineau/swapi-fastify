@@ -28,12 +28,17 @@ class AbstractController {
             }
             // On push sur la collection properties
             this.entityProperties[key] = value;
-            if (key !== '_id') {
+            if (key !== '_id' && key !== 'path') {
                 this.entityPropertiesCreate[key] = value;
                 this.entityPropertiesUpdate[key] = value;
             }
         });
 
+
+        // // On ajoute path dans les properties
+        // this.entityProperties.path = {
+        //     type: "string"
+        // }
     }
 
     initRoutes = () => {
@@ -48,16 +53,14 @@ class AbstractController {
                     response: {
                         200: {
                             description: "Successful response",
-                            type: "object",
-                            properties: {
-                                total: {
-                                    type: "number",
-                                },
-                                data: {
-                                    type: "array",
-                                    items: {
-                                        type: "object",
-                                        properties: this.entityProperties,
+                            content: {
+                                "application/json": {
+                                    schema: {
+                                        type: "array",
+                                        items: {
+                                            type: "object",
+                                            properties: this.entityProperties,
+                                        },
                                     },
                                 },
                             },
@@ -588,14 +591,20 @@ class AbstractController {
     getAll = async (request, reply) => 
     {
         try {
-            const total = await this.model.find().countDocuments()
+            // const total = await this.model.find().countDocuments()
 
             const elements = await this.model.find()
 
-            return reply.status(200).send({
-                total: total,
-                data: elements,
-            })
+            let returnElements = [];
+            elements.map((element) => {
+                let returnElement = element;
+                // let returnElement = {};
+                returnElement.path = `/${this.path}/${element._id}`
+                // element.path = `/${this.path}/${element._id}`
+                returnElements.push(returnElement);
+            });
+
+            return reply.status(200).send(returnElements);
         } catch (error) {
             return reply.status(400).send({
                 message: error.message
@@ -612,6 +621,10 @@ class AbstractController {
                     _id: id
                 }
             )
+
+            // On ajoute le path
+            element.path = `/${this.path}/${element._id}`
+
             return reply.status(200).send(element)
         } catch (error) {
             return reply.status(400).send({
@@ -624,7 +637,12 @@ class AbstractController {
         try {
             const body = request.body
             const element = await this.model.create(body)
+            
             await element.save()
+
+            // On ajoute le path
+            element.path = `/${this.path}/${element._id}`
+
             return reply.status(201).send(element)
         } catch (error) {
             return reply.status(400).send({
@@ -653,6 +671,9 @@ class AbstractController {
 
             // On met à jour
             await element.save();
+
+            // On ajoute le path
+            element.path = `/${this.path}/${element._id}`
 
             return reply.send(element);
         } catch (error) {

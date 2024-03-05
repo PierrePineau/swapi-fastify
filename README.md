@@ -86,7 +86,7 @@ Le niveau 3 correspond à l'utilisation des hyperliens pour représenter les rel
 
 2. **[Grafana :](https://grafana.com/)** Grafana est un outil open-source de visualisation et de monitoring qui s'intègre parfaitement avec Prometheus et de nombreux autres systèmes de monitoring. Il offre des tableaux de bord personnalisables et des fonctionnalités d'alerte.
 
-3. **[Zabbix :](https://www.zabbix.com/)** Zabbix est une plateforme open-source de monitoring réseau et d'applications qui permet de surveiller les performances et la disponibilité des serveurs, des réseaux et d'autres équipements informatiques.
+3. **[Zabbix :](https://www.zabbix.com/)** Zabbix est une plateforme open-source de monitoring réseau et d'applications qui permet de surveiller les performances et la disponibilité des serveurs et des réseaux.
 
 ## Outils de Test de Charge Open-Source
 

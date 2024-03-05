@@ -29,56 +29,68 @@ const start = async () => {
 			// Rapporter toutes les erreurs à Sentry
 			Sentry.captureException(error);
 		  
-			// Gérer spécifiquement les erreurs 401 et 404
-			if (error.statusCode === 401) {
-			  Sentry.captureMessage('Unauthorized error occurred');
-			  return reply.code(401).send({ message: 'Unauthorized' });
-			}
-		  
-			if (error.statusCode === 404) {
-			  Sentry.captureMessage('Not found error occurred');
-			  return reply.code(404).send({ message: 'Not found' });
-			}
-
-			if (error.statusCode === 200) {
-				Sentry.captureMessage('Successful response');
-				return reply.code(200).send({ message: 'Successful response' });
-			}
-
-			if (error.statusCode === 204) {
-				Sentry.captureMessage('No content');
-				return reply.code(204).send({ message: 'No content' });
-			}
-
-			if (error.statusCode === 400) {
-				Sentry.captureMessage('Bad request');
-				return reply.code(400).send({ message: 'Bad request' });
-			}
-
-			if (error.statusCode === 403) {
-				Sentry.captureMessage('Forbidden');
-				return reply.code(403).send({ message: 'Forbidden' });
-			}
-
-			if (error.statusCode === 429) {
-				Sentry.captureMessage('Too many requests');
-				return reply.code(429).send({ message: 'Too many requests' });
-			}
-
-			if (error.statusCode === 500) {
-				Sentry.captureMessage('Internal server error');
-				return reply.code(500).send({ message: 'Internal server error' });
-			}
-
-			if (error.statusCode === 502) {
-				Sentry.captureMessage('Bad gateway');
-				return reply.code(502).send({ message: 'Bad gateway' });
-			}
-
-			if (error.statusCode === 503) {
-				Sentry.captureMessage('Service unavailable');
-				return reply.code(503).send({ message: 'Service unavailable' });
-			}
+			let message;
+            let captureMessage;
+            
+            switch (error.statusCode) {
+            case 200:
+                captureMessage = 'Successful response';
+                message = 'Successful response';
+                break;
+            
+            case 204:
+                captureMessage = 'No content';
+                message = 'No content';
+                break;
+            
+            case 400:
+                captureMessage = 'Bad request';
+                message = 'Bad request';
+                break;
+            
+            case 401:
+                captureMessage = 'Unauthorized error occurred';
+                message = 'Unauthorized';
+                break;
+            
+            case 403:
+                captureMessage = 'Forbidden';
+                message = 'Forbidden';
+                break;
+            
+            case 404:
+                captureMessage = 'Not found error occurred';
+                message = 'Not found';
+                break;
+            
+            case 429:
+                captureMessage = 'Too many requests';
+                message = 'Too many requests';
+                break;
+            
+            case 500:
+                captureMessage = 'Internal server error';
+                message = 'Internal server error';
+                break;
+            
+            case 502:
+                captureMessage = 'Bad gateway';
+                message = 'Bad gateway';
+                break;
+            
+            case 503:
+                captureMessage = 'Service unavailable';
+                message = 'Service unavailable';
+                break;
+            
+            default:
+                captureMessage = 'Unexpected error occurred';
+                message = 'Unexpected error';
+                break;
+            }
+            
+            Sentry.captureMessage(captureMessage);
+            return reply.code(error.statusCode).send({ message });
 		  
 			// Si ce n'est pas une erreur 401 ou 404, continuer avec la gestion normale des erreurs
 			done();

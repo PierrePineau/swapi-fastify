@@ -39,6 +39,46 @@ const start = async () => {
 			  Sentry.captureMessage('Not found error occurred');
 			  return reply.code(404).send({ message: 'Not found' });
 			}
+
+			if (error.statusCode === 200) {
+				Sentry.captureMessage('Successful response');
+				return reply.code(200).send({ message: 'Successful response' });
+			}
+
+			if (error.statusCode === 204) {
+				Sentry.captureMessage('No content');
+				return reply.code(204).send({ message: 'No content' });
+			}
+
+			if (error.statusCode === 400) {
+				Sentry.captureMessage('Bad request');
+				return reply.code(400).send({ message: 'Bad request' });
+			}
+
+			if (error.statusCode === 403) {
+				Sentry.captureMessage('Forbidden');
+				return reply.code(403).send({ message: 'Forbidden' });
+			}
+
+			if (error.statusCode === 429) {
+				Sentry.captureMessage('Too many requests');
+				return reply.code(429).send({ message: 'Too many requests' });
+			}
+
+			if (error.statusCode === 500) {
+				Sentry.captureMessage('Internal server error');
+				return reply.code(500).send({ message: 'Internal server error' });
+			}
+
+			if (error.statusCode === 502) {
+				Sentry.captureMessage('Bad gateway');
+				return reply.code(502).send({ message: 'Bad gateway' });
+			}
+
+			if (error.statusCode === 503) {
+				Sentry.captureMessage('Service unavailable');
+				return reply.code(503).send({ message: 'Service unavailable' });
+			}
 		  
 			// Si ce n'est pas une erreur 401 ou 404, continuer avec la gestion normale des erreurs
 			done();

@@ -45,44 +45,52 @@ class AbstractController {
                     description: `Get ${this.plural}`,
                     tags: this.tags,
                     summary:  `Get ${this.plural}`,
-                    params: {
-                        type: "object",
-                        properties: {
-                            page: {
-                                type: "number",
-                                default: 1,
-                            },
-                            limit: {
-                                type: "number",
-                                default: 10,
-                            },
-                            order: {
-                                type: "string",
-                                default: "ASC",
-                            },
-                        },
-                    },
                     response: {
                         200: {
                             description: "Successful response",
                             type: "object",
                             properties: {
-                                count: {
-                                    type: "number",
-                                },
-                                page: {
-                                    type: "number",
-                                },
-                                limit: {
+                                total: {
                                     type: "number",
                                 },
                                 data: {
                                     type: "array",
+                                    items: {
+                                        type: "object",
+                                        properties: this.entityProperties,
+                                    },
+                                },
+                            },
+                        },
+                        204: {
+                            description: "No content",
+                            type: "object",
+                            properties: {
+                                message: {
+                                    type: "string",
                                 },
                             },
                         },
                         400: {
                             description: "Bad request",
+                            type: "object",
+                            properties: {
+                                message: {
+                                    type: "string",
+                                },
+                            },
+                        },
+                        401: {
+                            description: "Unauthorized",
+                            type: "object",
+                            properties: {
+                                message: {
+                                    type: "string",
+                                },
+                            },
+                        },
+                        403: {
+                            description: "Forbidden",
                             type: "object",
                             properties: {
                                 message: {
@@ -99,9 +107,45 @@ class AbstractController {
                                 },
                             },
                         },
+                        429: {
+                            description: "Too many requests",
+                            type: "object",
+                            properties: {
+                                message: {
+                                    type: "string",
+                                },
+                            },
+                        },
+                        500: {
+                            description: "Internal server error",
+                            type: "object",
+                            properties: {
+                                message: {
+                                    type: "string",
+                                },
+                            },
+                        },
+                        502: {
+                            description: "Bad gateway",
+                            type: "object",
+                            properties: {
+                                message: {
+                                    type: "string",
+                                },
+                            },
+                        },
+                        503: {
+                            description: "Service unavailable",
+                            type: "object",
+                            properties: {
+                                message: {
+                                    type: "string",
+                                },
+                            },
+                        },
                     },
                 },
-                // onRequest: [app.authenticate],
+                onRequest: [this.fastify.authenticate],
             },
             async (request, reply) => {
                 return this.getAll(request, reply)
@@ -127,8 +171,35 @@ class AbstractController {
                                 },
                             },
                         },
+                        204: {
+                            description: "No content",
+                            type: "object",
+                            properties: {
+                                message: {
+                                    type: "string",
+                                },
+                            },
+                        },
                         400: {
                             description: "Bad request",
+                            type: "object",
+                            properties: {
+                                message: {
+                                    type: "string",
+                                },
+                            },
+                        },
+                        401: {
+                            description: "Unauthorized",
+                            type: "object",
+                            properties: {
+                                message: {
+                                    type: "string",
+                                },
+                            },
+                        },
+                        403: {
+                            description: "Forbidden",
                             type: "object",
                             properties: {
                                 message: {
@@ -145,8 +216,45 @@ class AbstractController {
                                 },
                             },
                         },
+                        429: {
+                            description: "Too many requests",
+                            type: "object",
+                            properties: {
+                                message: {
+                                    type: "string",
+                                },
+                            },
+                        },
+                        500: {
+                            description: "Internal server error",
+                            type: "object",
+                            properties: {
+                                message: {
+                                    type: "string",
+                                },
+                            },
+                        },
+                        502: {
+                            description: "Bad gateway",
+                            type: "object",
+                            properties: {
+                                message: {
+                                    type: "string",
+                                },
+                            },
+                        },
+                        503: {
+                            description: "Service unavailable",
+                            type: "object",
+                            properties: {
+                                message: {
+                                    type: "string",
+                                },
+                            },
+                        },
                     },
-                }
+                },
+                onRequest: [this.fastify.authenticate],
             },
             async (request, reply) => {
                 return this.getOne(request, reply)
@@ -165,7 +273,7 @@ class AbstractController {
                         properties: this.entityPropertiesCreate,
                     },
                     response: {
-                        200: {
+                        201: {
                             content: {
                                 "application/json": {
                                     schema: {
@@ -184,6 +292,24 @@ class AbstractController {
                                 },
                             },
                         },
+                        401: {
+                            description: "Unauthorized",
+                            type: "object",
+                            properties: {
+                                message: {
+                                    type: "string",
+                                },
+                            },
+                        },
+                        403: {
+                            description: "Forbidden",
+                            type: "object",
+                            properties: {
+                                message: {
+                                    type: "string",
+                                },
+                            },
+                        },
                         404: {
                             description: "Not found",
                             type: "object",
@@ -193,8 +319,45 @@ class AbstractController {
                                 },
                             },
                         },
+                        429: {
+                            description: "Too many requests",
+                            type: "object",
+                            properties: {
+                                message: {
+                                    type: "string",
+                                },
+                            },
+                        },
+                        500: {
+                            description: "Internal server error",
+                            type: "object",
+                            properties: {
+                                message: {
+                                    type: "string",
+                                },
+                            },
+                        },
+                        502: {
+                            description: "Bad gateway",
+                            type: "object",
+                            properties: {
+                                message: {
+                                    type: "string",
+                                },
+                            },
+                        },
+                        503: {
+                            description: "Service unavailable",
+                            type: "object",
+                            properties: {
+                                message: {
+                                    type: "string",
+                                },
+                            },
+                        },
                     },
                 },
+                onRequest: [this.fastify.authenticate],
             },
             async (request, reply) => {
                 return this.create(request, reply)
@@ -224,8 +387,35 @@ class AbstractController {
                                 },
                             },
                         },
+                        204: {
+                            description: "No content",
+                            type: "object",
+                            properties: {
+                                message: {
+                                    type: "string",
+                                },
+                            },
+                        },
                         400: {
                             description: "Bad request",
+                            type: "object",
+                            properties: {
+                                message: {
+                                    type: "string",
+                                },
+                            },
+                        },
+                        401: {
+                            description: "Unauthorized",
+                            type: "object",
+                            properties: {
+                                message: {
+                                    type: "string",
+                                },
+                            },
+                        },
+                        403: {
+                            description: "Forbidden",
                             type: "object",
                             properties: {
                                 message: {
@@ -242,8 +432,45 @@ class AbstractController {
                                 },
                             },
                         },
+                        429: {
+                            description: "Too many requests",
+                            type: "object",
+                            properties: {
+                                message: {
+                                    type: "string",
+                                },
+                            },
+                        },
+                        500: {
+                            description: "Internal server error",
+                            type: "object",
+                            properties: {
+                                message: {
+                                    type: "string",
+                                },
+                            },
+                        },
+                        502: {
+                            description: "Bad gateway",
+                            type: "object",
+                            properties: {
+                                message: {
+                                    type: "string",
+                                },
+                            },
+                        },
+                        503: {
+                            description: "Service unavailable",
+                            type: "object",
+                            properties: {
+                                message: {
+                                    type: "string",
+                                },
+                            },
+                        },
                     },
-                }
+                },
+                onRequest: [this.fastify.authenticate],
             },
             async (request, reply) => {
                 return this.update(request, reply)
@@ -267,8 +494,35 @@ class AbstractController {
                                 },
                             },
                         },
+                        204: {
+                            description: "No content",
+                            type: "object",
+                            properties: {
+                                message: {
+                                    type: "string",
+                                },
+                            },
+                        },
                         400: {
                             description: "Bad request",
+                            type: "object",
+                            properties: {
+                                message: {
+                                    type: "string",
+                                },
+                            },
+                        },
+                        401: {
+                            description: "Unauthorized",
+                            type: "object",
+                            properties: {
+                                message: {
+                                    type: "string",
+                                },
+                            },
+                        },
+                        403: {
+                            description: "Forbidden",
                             type: "object",
                             properties: {
                                 message: {
@@ -285,8 +539,45 @@ class AbstractController {
                                 },
                             },
                         },
+                        429: {
+                            description: "Too many requests",
+                            type: "object",
+                            properties: {
+                                message: {
+                                    type: "string",
+                                },
+                            },
+                        },
+                        500: {
+                            description: "Internal server error",
+                            type: "object",
+                            properties: {
+                                message: {
+                                    type: "string",
+                                },
+                            },
+                        },
+                        502: {
+                            description: "Bad gateway",
+                            type: "object",
+                            properties: {
+                                message: {
+                                    type: "string",
+                                },
+                            },
+                        },
+                        503: {
+                            description: "Service unavailable",
+                            type: "object",
+                            properties: {
+                                message: {
+                                    type: "string",
+                                },
+                            },
+                        },
                     },
-                }
+                },
+                
             },
             async (request, reply) => {
                 return this.delete(request, reply)
@@ -297,18 +588,12 @@ class AbstractController {
     getAll = async (request, reply) => 
     {
         try {
-            const page = request.params.page || 1
-            const limit = request.params.limit || 10
-            const order = request.params.order == "ASC" ? "asc" : "desc"
-
             const total = await this.model.find().countDocuments()
 
-            const elements = await this.model.find().limit(limit).skip((page - 1) * limit).sort({title: order})
+            const elements = await this.model.find()
 
-            return reply.send({
-                count: total,
-                page: page,
-                limit: limit,
+            return reply.status(200).send({
+                total: total,
                 data: elements,
             })
         } catch (error) {
@@ -327,7 +612,7 @@ class AbstractController {
                     _id: id
                 }
             )
-            return reply.send(element)
+            return reply.status(200).send(element)
         } catch (error) {
             return reply.status(400).send({
                 message: error.message
@@ -340,7 +625,7 @@ class AbstractController {
             const body = request.body
             const element = await this.model.create(body)
             await element.save()
-            return reply.send(element)
+            return reply.status(201).send(element)
         } catch (error) {
             return reply.status(400).send({
                 message: error.message
@@ -357,7 +642,7 @@ class AbstractController {
             // Utilisation de findByIdAndUpdate pour mettre à jour la planète
             const element = await this.model.findByIdAndUpdate(id, body, { new: true });
 
-            reply.send(element);
+            // reply.send(element);
 
             // On vérifie si l'element existe
             if (!element) {
